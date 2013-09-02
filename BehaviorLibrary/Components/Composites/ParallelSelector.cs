@@ -1,69 +1,63 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace BehaviorLibrary.Components.Composites
 {
-    public class ParallelSelector : BehaviorComponent
-    {
+	public class ParallelSelector : BehaviorComponent
+	{
+		private readonly short p_SelLength;
+		protected BehaviorComponent[] p_Behaviors;
 
-        protected BehaviorComponent[] p_Behaviors;
+		private short p_Selections;
 
-        private short p_Selections = 0;
+		/// <summary>
+		///     Selects among the given behavior components
+		///     Performs an OR-Like behavior and will "fail-over" to each successive component until Success is reached or Failure
+		///     is certain
+		///     -Returns Success if a behavior component returns Success
+		///     -Returns Running if a behavior component returns Running
+		///     -Returns Failure if all behavior components returned Failure
+		/// </summary>
+		/// <param name="behaviors">one to many behavior components</param>
+		public ParallelSelector(params BehaviorComponent[] behaviors)
+		{
+			p_Behaviors = behaviors;
+			p_SelLength = (short) p_Behaviors.Length;
+		}
 
-        private short p_SelLength = 0;
-
-        /// <summary>
-        /// Selects among the given behavior components
-        /// Performs an OR-Like behavior and will "fail-over" to each successive component until Success is reached or Failure is certain
-        /// -Returns Success if a behavior component returns Success
-        /// -Returns Running if a behavior component returns Running
-        /// -Returns Failure if all behavior components returned Failure
-        /// </summary>
-        /// <param name="behaviors">one to many behavior components</param>
-        public ParallelSelector(params BehaviorComponent[] behaviors)
-        {
-            p_Behaviors = behaviors;
-            p_SelLength = (short)p_Behaviors.Length;
-        }
-
-        /// <summary>
-        /// performs the given behavior
-        /// </summary>
-        /// <returns>the behaviors return code</returns>
-        public override BehaviorReturnCode Behave()
-        {
-            
-            for (int i = 0; i < p_SelLength; i++)
-            {
-                try
-                {
-                    switch (p_Behaviors[i].Behave())
-                    {
-                        case BehaviorReturnCode.Failure:
-                            continue;
-                        case BehaviorReturnCode.Success:
-                            ReturnCode = BehaviorReturnCode.Success;
-                            return ReturnCode;
-                        case BehaviorReturnCode.Running:
-                            ReturnCode = BehaviorReturnCode.Running;
-                            return ReturnCode;
-                        default:
-                            continue;
-                    }
-                }
-                catch (Exception e)
-                {
+		/// <summary>
+		///     performs the given behavior
+		/// </summary>
+		/// <returns>the behaviors return code</returns>
+		public override BehaviorReturnCode Behave()
+		{
+			for (int i = 0; i < p_SelLength; i++)
+			{
+				try
+				{
+					switch (p_Behaviors[i].Behave())
+					{
+						case BehaviorReturnCode.Failure:
+							continue;
+						case BehaviorReturnCode.Success:
+							ReturnCode = BehaviorReturnCode.Success;
+							return ReturnCode;
+						case BehaviorReturnCode.Running:
+							ReturnCode = BehaviorReturnCode.Running;
+							return ReturnCode;
+						default:
+							continue;
+					}
+				}
+				catch (Exception e)
+				{
 #if DEBUG
-                Console.Error.WriteLine(e.ToString());
+					Console.Error.WriteLine(e.ToString());
 #endif
-                    continue;
-                }
-            }
+				}
+			}
 
 
-            /*
+			/*
             while (p_Selections < p_SelLength)
             {
                 try
@@ -92,9 +86,9 @@ namespace BehaviorLibrary.Components.Composites
                 }
             }*/
 
-            p_Selections = 0;
-            ReturnCode = BehaviorReturnCode.Failure;
-            return ReturnCode;
-        }
-    }
+			p_Selections = 0;
+			ReturnCode = BehaviorReturnCode.Failure;
+			return ReturnCode;
+		}
+	}
 }
