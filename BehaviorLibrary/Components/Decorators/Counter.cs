@@ -4,9 +4,9 @@ namespace BehaviorLibrary.Components.Decorators
 {
 	public class Counter : BehaviorComponent
 	{
-		private readonly BehaviorComponent c_Behavior;
-		private readonly int c_MaxCount;
-		private int c_Counter;
+		private readonly BehaviorComponent _behavior;
+		private readonly int _maxCount;
+		private int _counter;
 
 		/// <summary>
 		///     executes the behavior based on a counter
@@ -17,8 +17,8 @@ namespace BehaviorLibrary.Components.Decorators
 		/// <param name="behavior">behavior to run</param>
 		public Counter(int maxCount, BehaviorComponent behavior)
 		{
-			c_MaxCount = maxCount;
-			c_Behavior = behavior;
+			_maxCount = maxCount;
+			_behavior = behavior;
 		}
 
 		/// <summary>
@@ -29,14 +29,14 @@ namespace BehaviorLibrary.Components.Decorators
 		{
 			try
 			{
-				if (c_Counter < c_MaxCount)
+				if (_counter < _maxCount)
 				{
-					c_Counter++;
+					_counter++;
 					ReturnCode = BehaviorReturnCode.Running;
 					return BehaviorReturnCode.Running;
 				}
-				c_Counter = 0;
-				ReturnCode = c_Behavior.Behave();
+				_counter = 0;
+				ReturnCode = _behavior.Behave();
 				return ReturnCode;
 			}
 			catch (Exception e)

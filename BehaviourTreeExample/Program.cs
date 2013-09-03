@@ -45,7 +45,6 @@ namespace BehaviourTreeExample
 
 			ParallelSequence follow = new ParallelSequence(new Inverter(tooClose), updatePosition, ifMovedCreateNewPath, ifPathFoundGetPath,
 				ifPathNewUseIt, ifReachedCellGetNext, ifNotReachedTargetMoveTowardsCell, animate);
-
 			
 			RootSelector root = new RootSelector(SwitchBehaviours, initialize, follow);
 
@@ -59,86 +58,91 @@ namespace BehaviourTreeExample
 
 		private static BehaviorReturnCode updateAnimation()
 		{
+			Console.WriteLine("Action - Update Animation");
 			return BehaviorReturnCode.Success;
 		}
 
 		private static BehaviorReturnCode resetPathfinder()
 		{
+			Console.WriteLine("Action - Reset path finder");
 			return BehaviorReturnCode.Success;
 		}
 
 		private static BehaviorReturnCode updateTargetPosision()
 		{
+			Console.WriteLine("Action - Update Target position ");
 			return BehaviorReturnCode.Success;
 		}
 
 		private static BehaviorReturnCode getCurrentPath()
 		{
+			Console.WriteLine("Action - Get current path");
 			return BehaviorReturnCode.Success;
 		}
 
 		private static BehaviorReturnCode setNewPath()
 		{
+			Console.WriteLine("Action - set new path ");
 			return BehaviorReturnCode.Success;
 		}
 
 		private static BehaviorReturnCode getNextPathCell()
 		{
+			Console.WriteLine("Action - Get next path cell");
 			return BehaviorReturnCode.Success;
 		}
 
 		private static bool hasNewPath()
 		{
-			Console.WriteLine("Has new path");
+			Console.WriteLine("Conditional - Has new path");
 			return true;
 		}
 
 		private static bool hasReachedTarget()
 		{
-			Console.WriteLine("Has reached target");
+			Console.WriteLine("Conditional - Has reached target");
 			return true;
 		}
 
 		private static bool hasReachedCell()
 		{
-			Console.WriteLine("Has reached Cell");
+			Console.WriteLine("Conditional - Has reached Cell");
 			return true;
 		}
 
 		private static bool hasPathBeenFound()
 		{
-			Console.WriteLine("Has path been found");
+			Console.WriteLine("Conditional - Has path been found");
 			return true;
 		}
 
 		private static BehaviorReturnCode initializePathfinder()
 		{
-			Console.WriteLine("init path finder");
+			Console.WriteLine("Action - init path finder");
 			return BehaviorReturnCode.Success;
-
 		}
 
 		private static BehaviorReturnCode calculatePath()
 		{
-			Console.WriteLine("CAlculate Path");
+			Console.WriteLine("Action - CAlculate Path");
 			return BehaviorReturnCode.Success;
 		}
 
 		private static BehaviorReturnCode moveTowardsCell()
 		{
-			Console.WriteLine("Move towards cell");
+			Console.WriteLine("Action - Move towards cell");
 			return BehaviorReturnCode.Success;
 		}
 
 		private static bool hasTargetMoved()
 		{
-			Console.WriteLine("Has target moved");
+			Console.WriteLine("Conditional - Has target moved");
 			return true;
 		}
 
 		private static bool isTooClose()
 		{
-			Console.WriteLine("Is too close");
+			Console.WriteLine("Conditional - Is too close");
 			return false;
 
 		}

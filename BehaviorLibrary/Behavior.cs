@@ -12,15 +12,11 @@ namespace BehaviorLibrary
 
 	public delegate BehaviorReturnCode BehaviorReturn();
 
-	/// <summary>
-	/// </summary>
 	public class Behavior
 	{
 		private readonly RootSelector b_Root;
 
-		/// <summary>
-		/// </summary>
-		/// <param name="root"></param>
+		
 		public Behavior(RootSelector root)
 		{
 			b_Root = root;
@@ -28,9 +24,6 @@ namespace BehaviorLibrary
 
 		public BehaviorReturnCode ReturnCode { get; set; }
 
-		/// <summary>
-		///     perform the behavior
-		/// </summary>
 		public BehaviorReturnCode Behave()
 		{
 			try
