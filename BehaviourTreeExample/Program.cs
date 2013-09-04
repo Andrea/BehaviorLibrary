@@ -1,5 +1,4 @@
 ﻿using System;
-
 using BehaviorLibrary;
 using BehaviorLibrary.Components.Actions;
 using BehaviorLibrary.Components.Composites;
@@ -14,7 +13,17 @@ namespace BehaviourTreeExample
 
 		static void Main(string[] args)
 		{
-			
+			var draggonScenario = new DraggonScenario();
+			draggonScenario.Setup();
+			while (true)
+			{
+				draggonScenario.Behave();
+			}
+			//RunFirstScenario();
+		}
+
+		private static void RunFirstScenario()
+		{
 			var tooClose = new Conditional(isTooClose);
 			var targetMoved = new Conditional(hasTargetMoved);
 			var pathFound = new Conditional(hasPathBeenFound);
@@ -45,7 +54,7 @@ namespace BehaviourTreeExample
 
 			ParallelSequence follow = new ParallelSequence(new Inverter(tooClose), updatePosition, ifMovedCreateNewPath, ifPathFoundGetPath,
 				ifPathNewUseIt, ifReachedCellGetNext, ifNotReachedTargetMoveTowardsCell, animate);
-			
+
 			RootSelector root = new RootSelector(SwitchBehaviours, initialize, follow);
 
 			//set a reference to the root
@@ -54,6 +63,7 @@ namespace BehaviourTreeExample
 			//to execute the behavior
 			behavior.Behave();
 			Console.ReadLine();
+
 		}
 
 		private static BehaviorReturnCode updateAnimation()
