@@ -4,7 +4,7 @@ namespace BehaviorLibrary.Components.Actions
 {
 	public class BehaviorAction : BehaviorComponent
 	{
-		private readonly Func<BehaviorReturnCode> ba_Action;
+		private readonly Func<BehaviorReturnCode> _action;
 
 		public BehaviorAction()
 		{
@@ -12,14 +12,14 @@ namespace BehaviorLibrary.Components.Actions
 
 		public BehaviorAction(Func<BehaviorReturnCode> action)
 		{
-			ba_Action = action;
+			_action = action;
 		}
 
 		public override BehaviorReturnCode Behave()
 		{
 			try
 			{
-				switch (ba_Action.Invoke())
+				switch (_action.Invoke())
 				{
 					case BehaviorReturnCode.Success:
 						ReturnCode = BehaviorReturnCode.Success;

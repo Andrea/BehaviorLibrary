@@ -4,10 +4,10 @@ namespace BehaviorLibrary.Components.Composites
 {
 	public class Selector : BehaviorComponent
 	{
-		private readonly short selLength;
-		protected BehaviorComponent[] s_Behaviors;
+		private readonly short _selLength;
+		protected BehaviorComponent[] BehaviorComponents;
 
-		private short selections;
+		private short _selections;
 
 		/// <summary>
 		///     Selects among the given behavior components
@@ -20,8 +20,8 @@ namespace BehaviorLibrary.Components.Composites
 		/// <param name="behaviors">one to many behavior components</param>
 		public Selector(params BehaviorComponent[] behaviors)
 		{
-			s_Behaviors = behaviors;
-			selLength = (short) s_Behaviors.Length;
+			BehaviorComponents = behaviors;
+			_selLength = (short) BehaviorComponents.Length;
 		}
 
 		/// <summary>
@@ -30,25 +30,25 @@ namespace BehaviorLibrary.Components.Composites
 		/// <returns>the behaviors return code</returns>
 		public override BehaviorReturnCode Behave()
 		{
-			while (selections < selLength)
+			while (_selections < _selLength)
 			{
 				try
 				{
-					switch (s_Behaviors[selections].Behave())
+					switch (BehaviorComponents[_selections].Behave())
 					{
 						case BehaviorReturnCode.Failure:
-							selections++;
+							_selections++;
 							ReturnCode = BehaviorReturnCode.Running;
 							return ReturnCode;
 						case BehaviorReturnCode.Success:
-							selections = 0;
+							_selections = 0;
 							ReturnCode = BehaviorReturnCode.Success;
 							return ReturnCode;
 						case BehaviorReturnCode.Running:
 							ReturnCode = BehaviorReturnCode.Running;
 							return ReturnCode;
 						default:
-							selections++;
+							_selections++;
 							ReturnCode = BehaviorReturnCode.Failure;
 							return ReturnCode;
 					}
@@ -58,13 +58,13 @@ namespace BehaviorLibrary.Components.Composites
 #if DEBUG
 					Console.Error.WriteLine(e.ToString());
 #endif
-					selections++;
+					_selections++;
 					ReturnCode = BehaviorReturnCode.Failure;
 					return ReturnCode;
 				}
 			}
 
-			selections = 0;
+			_selections = 0;
 			ReturnCode = BehaviorReturnCode.Failure;
 			return ReturnCode;
 		}

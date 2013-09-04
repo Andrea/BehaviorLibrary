@@ -4,11 +4,11 @@ namespace BehaviorLibrary.Components.Decorators
 {
 	public class Timer : BehaviorComponent
 	{
-		private readonly BehaviorComponent t_Behavior;
-		private readonly Func<int> t_ElapsedTimeFunction;
+		private readonly BehaviorComponent _behaviorComponent;
+		private readonly Func<int> _elapsedTimeFunction;
 
-		private readonly int t_WaitTime;
-		private int t_TimeElapsed;
+		private readonly int _waitTime;
+		private int _timeElapsed;
 
 		/// <summary>
 		///     executes the behavior after a given amount of time in miliseconds has passed
@@ -18,9 +18,9 @@ namespace BehaviorLibrary.Components.Decorators
 		/// <param name="behavior">behavior to run</param>
 		public Timer(Func<int> elapsedTimeFunction, int timeToWait, BehaviorComponent behavior)
 		{
-			t_ElapsedTimeFunction = elapsedTimeFunction;
-			t_Behavior = behavior;
-			t_WaitTime = timeToWait;
+			_elapsedTimeFunction = elapsedTimeFunction;
+			_behaviorComponent = behavior;
+			_waitTime = timeToWait;
 		}
 
 		/// <summary>
@@ -31,12 +31,12 @@ namespace BehaviorLibrary.Components.Decorators
 		{
 			try
 			{
-				t_TimeElapsed += t_ElapsedTimeFunction.Invoke();
+				_timeElapsed += _elapsedTimeFunction.Invoke();
 
-				if (t_TimeElapsed >= t_WaitTime)
+				if (_timeElapsed >= _waitTime)
 				{
-					t_TimeElapsed = 0;
-					ReturnCode = t_Behavior.Behave();
+					_timeElapsed = 0;
+					ReturnCode = _behaviorComponent.Behave();
 					return ReturnCode;
 				}
 				ReturnCode = BehaviorReturnCode.Running;

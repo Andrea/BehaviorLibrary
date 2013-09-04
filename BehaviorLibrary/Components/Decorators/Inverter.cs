@@ -4,7 +4,7 @@ namespace BehaviorLibrary.Components.Decorators
 {
 	public class Inverter : BehaviorComponent
 	{
-		private readonly BehaviorComponent d_Behavior;
+		private readonly BehaviorComponent _behaviorComponent;
 
 		/// <summary>
 		///     inverts the given behavior
@@ -15,7 +15,7 @@ namespace BehaviorLibrary.Components.Decorators
 		/// <param name="behavior"></param>
 		public Inverter(BehaviorComponent behavior)
 		{
-			d_Behavior = behavior;
+			_behaviorComponent = behavior;
 		}
 
 		/// <summary>
@@ -26,7 +26,7 @@ namespace BehaviorLibrary.Components.Decorators
 		{
 			try
 			{
-				switch (d_Behavior.Behave())
+				switch (_behaviorComponent.Behave())
 				{
 					case BehaviorReturnCode.Failure:
 						ReturnCode = BehaviorReturnCode.Success;

@@ -4,7 +4,7 @@ namespace BehaviorLibrary.Components.Composites
 {
 	public class ParallelSequence : BehaviorComponent
 	{
-		private readonly BehaviorComponent[] p_Behaviors;
+		private readonly BehaviorComponent[] _behaviorComponents;
 
 		/// <summary>
 		///     attempts to run the behaviors all in one cycle
@@ -15,7 +15,7 @@ namespace BehaviorLibrary.Components.Composites
 		/// <param name="behaviors"></param>
 		public ParallelSequence(params BehaviorComponent[] behaviors)
 		{
-			p_Behaviors = behaviors;
+			_behaviorComponents = behaviors;
 		}
 
 		/// <summary>
@@ -24,11 +24,11 @@ namespace BehaviorLibrary.Components.Composites
 		/// <returns>the behaviors return code</returns>
 		public override BehaviorReturnCode Behave()
 		{
-			for (int i = 0; i < p_Behaviors.Length; i++)
+			for (int i = 0; i < _behaviorComponents.Length; i++)
 			{
 				try
 				{
-					switch (p_Behaviors[i].Behave())
+					switch (_behaviorComponents[i].Behave())
 					{
 						case BehaviorReturnCode.Failure:
 							ReturnCode = BehaviorReturnCode.Failure;

@@ -14,12 +14,12 @@ namespace BehaviorLibrary
 
 	public class Behavior
 	{
-		private readonly RootSelector b_Root;
+		private readonly RootSelector _rootSelector;
 
 		
 		public Behavior(RootSelector root)
 		{
-			b_Root = root;
+			_rootSelector = root;
 		}
 
 		public BehaviorReturnCode ReturnCode { get; set; }
@@ -28,7 +28,7 @@ namespace BehaviorLibrary
 		{
 			try
 			{
-				switch (b_Root.Behave())
+				switch (_rootSelector.Behave())
 				{
 					case BehaviorReturnCode.Failure:
 						ReturnCode = BehaviorReturnCode.Failure;

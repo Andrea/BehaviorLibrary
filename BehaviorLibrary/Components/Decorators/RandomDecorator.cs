@@ -4,8 +4,8 @@ namespace BehaviorLibrary.Components.Decorators
 {
 	public class RandomDecorator : BehaviorComponent
 	{
-		private readonly BehaviorComponent _rBehavior;
-		private readonly float _rProbability;
+		private readonly BehaviorComponent _behaviorComponent;
+		private readonly float _probability;
 		private readonly Func<float> _rRandomFunction;
 
 		/// <summary>
@@ -16,9 +16,9 @@ namespace BehaviorLibrary.Components.Decorators
 		/// <param name="behavior">behavior to execute</param>
 		public RandomDecorator(float probability, Func<float> randomFunction, BehaviorComponent behavior)
 		{
-			_rProbability = probability;
+			_probability = probability;
 			_rRandomFunction = randomFunction;
-			_rBehavior = behavior;
+			_behaviorComponent = behavior;
 		}
 
 
@@ -26,9 +26,9 @@ namespace BehaviorLibrary.Components.Decorators
 		{
 			try
 			{
-				if (_rRandomFunction.Invoke() <= _rProbability)
+				if (_rRandomFunction.Invoke() <= _probability)
 				{
-					ReturnCode = _rBehavior.Behave();
+					ReturnCode = _behaviorComponent.Behave();
 					return ReturnCode;
 				}
 				ReturnCode = BehaviorReturnCode.Running;

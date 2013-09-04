@@ -4,10 +4,9 @@ namespace BehaviorLibrary.Components.Composites
 {
 	public class Sequence : BehaviorComponent
 	{
-		private readonly short seqLength;
-		protected BehaviorComponent[] s_Behaviors;
-
-		private short sequence;
+		private readonly short _sequenceLength;
+		private readonly BehaviorComponent[] _behaviorComponents;
+		private short _sequence;
 
 		/// <summary>
 		///     Performs the given behavior components sequentially
@@ -19,8 +18,8 @@ namespace BehaviorLibrary.Components.Composites
 		/// <param name="behaviors">one to many behavior components</param>
 		public Sequence(params BehaviorComponent[] behaviors)
 		{
-			s_Behaviors = behaviors;
-			seqLength = (short) s_Behaviors.Length;
+			_behaviorComponents = behaviors;
+			_sequenceLength = (short) _behaviorComponents.Length;
 		}
 
 		/// <summary>
@@ -30,18 +29,18 @@ namespace BehaviorLibrary.Components.Composites
 		public override BehaviorReturnCode Behave()
 		{
 			//while you can go through them, do so
-			while (sequence < seqLength)
+			while (_sequence < _sequenceLength)
 			{
 				try
 				{
-					switch (s_Behaviors[sequence].Behave())
+					switch (_behaviorComponents[_sequence].Behave())
 					{
 						case BehaviorReturnCode.Failure:
-							sequence = 0;
+							_sequence = 0;
 							ReturnCode = BehaviorReturnCode.Failure;
 							return ReturnCode;
 						case BehaviorReturnCode.Success:
-							sequence++;
+							_sequence++;
 							ReturnCode = BehaviorReturnCode.Running;
 							return ReturnCode;
 						case BehaviorReturnCode.Running:
@@ -54,13 +53,13 @@ namespace BehaviorLibrary.Components.Composites
 #if DEBUG
 					Console.Error.WriteLine(e.ToString());
 #endif
-					sequence = 0;
+					_sequence = 0;
 					ReturnCode = BehaviorReturnCode.Failure;
 					return ReturnCode;
 				}
 			}
 
-			sequence = 0;
+			_sequence = 0;
 			ReturnCode = BehaviorReturnCode.Success;
 			return ReturnCode;
 		}

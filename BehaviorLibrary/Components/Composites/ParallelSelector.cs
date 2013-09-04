@@ -4,11 +4,10 @@ namespace BehaviorLibrary.Components.Composites
 {
 	public class ParallelSelector : BehaviorComponent
 	{
-		private readonly short p_SelLength;
-		protected BehaviorComponent[] p_Behaviors;
+		private readonly short _selLength;
 
-		private short p_Selections;
-
+		private readonly BehaviorComponent[] _behaviorComponents;
+		
 		/// <summary>
 		///     Selects among the given behavior components
 		///     Performs an OR-Like behavior and will "fail-over" to each successive component until Success is reached or Failure
@@ -20,8 +19,8 @@ namespace BehaviorLibrary.Components.Composites
 		/// <param name="behaviors">one to many behavior components</param>
 		public ParallelSelector(params BehaviorComponent[] behaviors)
 		{
-			p_Behaviors = behaviors;
-			p_SelLength = (short) p_Behaviors.Length;
+			_behaviorComponents = behaviors;
+			_selLength = (short) _behaviorComponents.Length;
 		}
 
 		/// <summary>
@@ -30,11 +29,11 @@ namespace BehaviorLibrary.Components.Composites
 		/// <returns>the behaviors return code</returns>
 		public override BehaviorReturnCode Behave()
 		{
-			for (int i = 0; i < p_SelLength; i++)
+			for (int i = 0; i < _selLength; i++)
 			{
 				try
 				{
-					switch (p_Behaviors[i].Behave())
+					switch (_behaviorComponents[i].Behave())
 					{
 						case BehaviorReturnCode.Failure:
 							continue;
@@ -55,38 +54,6 @@ namespace BehaviorLibrary.Components.Composites
 #endif
 				}
 			}
-
-
-			/*
-            while (p_Selections < p_SelLength)
-            {
-                try
-                {
-                    switch (p_Behaviors[p_Selections].Behave())
-                    {
-                        case BehaviorReturnCode.Failure:
-                            p_Selections++;
-                            continue;
-                        case BehaviorReturnCode.Success:
-                            p_Selections = 0;
-                            ReturnCode = BehaviorReturnCode.Success;
-                            return ReturnCode;
-                        case BehaviorReturnCode.Running:
-                            ReturnCode = BehaviorReturnCode.Running;
-                            return ReturnCode;
-                        default:
-                            p_Selections++;
-                            continue;
-                    }
-                }
-                catch (Exception)
-                {
-                    p_Selections++;
-                    continue;
-                }
-            }*/
-
-			p_Selections = 0;
 			ReturnCode = BehaviorReturnCode.Failure;
 			return ReturnCode;
 		}
