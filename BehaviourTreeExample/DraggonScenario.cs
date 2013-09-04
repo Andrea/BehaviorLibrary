@@ -58,37 +58,37 @@ namespace BehaviourTreeExample
 		private BehaviorReturnCode StoreGold()
 		{
 			_nodeState++;
-			return LogAndReturn(BehaviorReturnCode.Success);
+			return Helper.LogAndReturn(BehaviorReturnCode.Success);
 		}
 
 		private BehaviorReturnCode FlyToHome()
 		{
-			return LogAndReturn(BehaviorReturnCode.Success);
+			return Helper.LogAndReturn(BehaviorReturnCode.Success);
 		}
 
 		private BehaviorReturnCode TakeGold()
 		{
-			return LogAndReturn(BehaviorReturnCode.Success);
+			return Helper.LogAndReturn(BehaviorReturnCode.Success);
 		}
 
 		private bool StrongEnough()
 		{
-			return LogAndReturn(true);
+			return Helper.LogAndReturn(true);
 		}
 
 		private BehaviorReturnCode FightGuards()
 		{
-			return LogAndReturn(BehaviorReturnCode.Success);
+			return Helper.LogAndReturn(BehaviorReturnCode.Success);
 		}
 
 		private BehaviorReturnCode FlyToCastle()
 		{
-			return LogAndReturn(BehaviorReturnCode.Success);
+			return Helper.LogAndReturn(BehaviorReturnCode.Success);
 		}
 
 		private BehaviorReturnCode ChooseACastleToFlyTo()
 		{
-			return LogAndReturn(BehaviorReturnCode.Success);
+			return Helper.LogAndReturn(BehaviorReturnCode.Success);
 		}
 
 		public void Behave()
@@ -103,24 +103,18 @@ namespace BehaviourTreeExample
 			if (_i < 3)
 			{
 				_i++;
-				return LogAndReturn(BehaviorReturnCode.Running);
+				return Helper.LogAndReturn(BehaviorReturnCode.Running);
 			}
 			
 			_nodeState++;
-			return LogAndReturn(BehaviorReturnCode.Success);
+			return Helper.LogAndReturn(BehaviorReturnCode.Success);
 		}
 
 		private bool IsThiefNearTreasure()
 		{
-			return LogAndReturn(false);
+			return Helper.LogAndReturn(false);
 		}
 
-		private T LogAndReturn<T>(T code)
-		{
-			Console.Write(code);
-			Console.Write("  --  Called from {0}", new StackTrace().GetFrame(1).GetMethod().Name);
-			Console.WriteLine();
-			return code;
-		}
+		
 	}
 }
