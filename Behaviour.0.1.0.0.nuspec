@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package>
+    <metadata>
+        <id>Duality</id>
+        <version>0.1.0.0</version>
+        <title>Duality </title>
+        <authors>@silverspoon</authors>
+        <owners />
+        <projectUrl>https://github.com/Andrea/BehaviorLibrary</projectUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>Behaviour Treet Library</description>
+        <language>en-IE</language>
+    </metadata>    
+    <files>
+        <file src="BehaviorLibrary\bin\Release\BehaviorLibrary.dll" target="lib\net40\BehaviorLibrary.dll" />                
+    </files>
+</package>
