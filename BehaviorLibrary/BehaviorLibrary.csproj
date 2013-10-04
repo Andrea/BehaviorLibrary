@@ -39,18 +39,20 @@
     <Compile Include="Behavior.cs" />
     <Compile Include="Components\Actions\BehaviorAction.cs" />
     <Compile Include="Components\BehaviorComponent.cs" />
-    <Compile Include="Components\Composites\ParallelSelector.cs" />
-    <Compile Include="Components\Composites\ParallelSequence.cs" />
     <Compile Include="Components\Composites\RandomSelector.cs" />
     <Compile Include="Components\Composites\RootSelector.cs" />
     <Compile Include="Components\Composites\Selector.cs" />
-    <Compile Include="Components\Composites\Sequence.cs" />
     <Compile Include="Components\Conditionals\Conditional.cs" />
     <Compile Include="Components\Decorators\Counter.cs" />
     <Compile Include="Components\Decorators\Inverter.cs" />
     <Compile Include="Components\Decorators\RandomDecorator.cs" />
     <Compile Include="Components\Decorators\Timer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Components\Composites\PartialSelector.cs" />
+    <Compile Include="Components\Composites\PartialSequence.cs" />
+    <Compile Include="Components\Composites\Sequence.cs" />
+    <Compile Include="Components\Composites\StatefulSequence.cs" />
+    <Compile Include="Components\Composites\StatefulSelector.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

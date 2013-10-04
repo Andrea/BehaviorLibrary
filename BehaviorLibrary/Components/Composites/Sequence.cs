@@ -1,67 +1,66 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace BehaviorLibrary.Components.Composites
 {
-	public class Sequence : BehaviorComponent
-	{
-		private readonly short _sequenceLength;
-		private readonly BehaviorComponent[] _behaviorComponents;
-		private short _sequence;
+    public class Sequence : BehaviorComponent
+    {
 
-		/// <summary>
-		///     Performs the given behavior components sequentially
-		///     Performs an AND-Like behavior and will perform each successive component
-		///     -Returns Success if all behavior components return Success
-		///     -Returns Running if an individual behavior component returns Success or Running
-		///     -Returns Failure if a behavior components returns Failure or an error is encountered
-		/// </summary>
-		/// <param name="behaviors">one to many behavior components</param>
-		public Sequence(params BehaviorComponent[] behaviors)
-		{
-			_behaviorComponents = behaviors;
-			_sequenceLength = (short) _behaviorComponents.Length;
-		}
+        private BehaviorComponent[] s_Behaviors;
 
-		/// <summary>
-		///     performs the given behavior
-		/// </summary>
-		/// <returns>the behaviors return code</returns>
-		public override BehaviorReturnCode Behave()
-		{
-			//while you can go through them, do so
-			while (_sequence < _sequenceLength)
-			{
-				try
-				{
-					switch (_behaviorComponents[_sequence].Behave())
-					{
-						case BehaviorReturnCode.Failure:
-							_sequence = 0;
-							ReturnCode = BehaviorReturnCode.Failure;
-							return ReturnCode;
-						case BehaviorReturnCode.Success:
-							_sequence++;
-							ReturnCode = BehaviorReturnCode.Running;
-							return ReturnCode;
-						case BehaviorReturnCode.Running:
-							ReturnCode = BehaviorReturnCode.Running;
-							return ReturnCode;
-					}
-				}
-				catch (Exception e)
-				{
+        /// <summary>
+        /// attempts to run the behaviors all in one cycle
+        /// -Returns Success when all are successful
+        /// -Returns Failure if one behavior fails or an error occurs
+        /// -Does not Return Running
+        /// </summary>
+        /// <param name="behaviors"></param>
+        public Sequence(params BehaviorComponent[] behaviors)
+        {
+            s_Behaviors = behaviors;
+        }
+
+        /// <summary>
+        /// performs the given behavior
+        /// </summary>
+        /// <returns>the behaviors return code</returns>
+        public override BehaviorReturnCode Behave()
+        {
+
+            for(int i = 0; i < s_Behaviors.Length;i++)
+            {
+                try
+                {
+                    switch (s_Behaviors[i].Behave())
+                    {
+                        case BehaviorReturnCode.Failure:
+                            ReturnCode = BehaviorReturnCode.Failure;
+                            return ReturnCode;
+                        case BehaviorReturnCode.Success:
+                            continue;
+                        case BehaviorReturnCode.Running:
+                            continue;
+                        default:
+                            ReturnCode = BehaviorReturnCode.Success;
+                            return ReturnCode;
+                    }
+                }
+                catch (Exception e)
+                {
 #if DEBUG
-					Console.Error.WriteLine(e.ToString());
+                Console.Error.WriteLine(e.ToString());
 #endif
-					_sequence = 0;
-					ReturnCode = BehaviorReturnCode.Failure;
-					return ReturnCode;
-				}
-			}
+                    ReturnCode = BehaviorReturnCode.Failure;
+                    return ReturnCode;
+                }
+            }
 
-			_sequence = 0;
-			ReturnCode = BehaviorReturnCode.Success;
-			return ReturnCode;
-		}
-	}
+            ReturnCode = BehaviorReturnCode.Success;
+            return ReturnCode;
+        }
+
+
+    }
 }
