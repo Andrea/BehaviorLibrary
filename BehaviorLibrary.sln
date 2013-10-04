@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BehaviorLibrary", "BehaviorLibrary\BehaviorLibrary.csproj", "{CC824B6F-6145-485F-9604-FB94F0ECACA7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{A7D9F051-A51E-42FF-AD2B-D94DC8A06650}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BehaviourLibraryTests", "BehaviourLibraryTests\BehaviourLibraryTests.csproj", "{E897EAEC-3027-4F0E-9C92-0DFAA3A8E32C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BehaviourTreeExample", "BehaviourTreeExample\BehaviourTreeExample.csproj", "{19F37AC6-0376-4BAE-B5CE-7C452563EA43}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,19 +13,23 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A7D9F051-A51E-42FF-AD2B-D94DC8A06650}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A7D9F051-A51E-42FF-AD2B-D94DC8A06650}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A7D9F051-A51E-42FF-AD2B-D94DC8A06650}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A7D9F051-A51E-42FF-AD2B-D94DC8A06650}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CC824B6F-6145-485F-9604-FB94F0ECACA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CC824B6F-6145-485F-9604-FB94F0ECACA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CC824B6F-6145-485F-9604-FB94F0ECACA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CC824B6F-6145-485F-9604-FB94F0ECACA7}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = BehaviorLibrary\BehaviorLibrary.csproj
+		{E897EAEC-3027-4F0E-9C92-0DFAA3A8E32C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E897EAEC-3027-4F0E-9C92-0DFAA3A8E32C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E897EAEC-3027-4F0E-9C92-0DFAA3A8E32C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E897EAEC-3027-4F0E-9C92-0DFAA3A8E32C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19F37AC6-0376-4BAE-B5CE-7C452563EA43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19F37AC6-0376-4BAE-B5CE-7C452563EA43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19F37AC6-0376-4BAE-B5CE-7C452563EA43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19F37AC6-0376-4BAE-B5CE-7C452563EA43}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = BehaviorLibrary\BehaviorLibrary.csproj
 	EndGlobalSection
 EndGlobal

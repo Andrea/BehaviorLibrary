@@ -1,18 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace BehaviorLibrary.Components.Composites
 {
     public class PartialSequence : BehaviorComponent
     {
-
-        protected BehaviorComponent[] s_Behaviors;
-
-        private short sequence = 0;
-
-        private short seqLength = 0;
+	    private BehaviorComponent[] _behaviors;
+        private short _sequence;
+        private short _seqLength;
         
         /// <summary>
         /// Performs the given behavior components sequentially (one evaluation per Behave call)
@@ -24,8 +18,8 @@ namespace BehaviorLibrary.Components.Composites
         /// <param name="behaviors">one to many behavior components</param>
         public PartialSequence(params BehaviorComponent[] behaviors)
         {
-            s_Behaviors = behaviors;
-            seqLength = (short) s_Behaviors.Length;
+            _behaviors = behaviors;
+            _seqLength = (short) _behaviors.Length;
         }
 
         /// <summary>
@@ -35,18 +29,18 @@ namespace BehaviorLibrary.Components.Composites
         public override BehaviorReturnCode Behave()
         {
             //while you can go through them, do so
-            while (sequence < seqLength)
+            while (_sequence < _seqLength)
             {
                 try
                 {
-                    switch (s_Behaviors[sequence].Behave())
+                    switch (_behaviors[_sequence].Behave())
                     {
                         case BehaviorReturnCode.Failure:
-                            sequence = 0;
+                            _sequence = 0;
                             ReturnCode = BehaviorReturnCode.Failure;
                             return ReturnCode;
                         case BehaviorReturnCode.Success:
-                            sequence++;
+                            _sequence++;
                             ReturnCode = BehaviorReturnCode.Running;
                             return ReturnCode;
                         case BehaviorReturnCode.Running:
@@ -59,14 +53,14 @@ namespace BehaviorLibrary.Components.Composites
 #if DEBUG
                 Console.Error.WriteLine(e.ToString());
 #endif
-                    sequence = 0;
+                    _sequence = 0;
                     ReturnCode = BehaviorReturnCode.Failure;
                     return ReturnCode;
                 }
 
             }
 
-            sequence = 0;
+            _sequence = 0;
             ReturnCode = BehaviorReturnCode.Success;
             return ReturnCode;
 

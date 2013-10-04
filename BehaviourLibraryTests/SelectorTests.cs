@@ -19,7 +19,7 @@ namespace BehaviourLibraryTests
 		[Test]
 		public void When_Failed_then_execute_until_success()
 		{
-			var returnCode = new ParallelSelector(
+			var returnCode = new Selector(
 				new BehaviorAction(CalledAndFailed), 
 				new BehaviorAction(CalledAndFailed), 
 				new BehaviorAction(()=> BehaviorReturnCode.Success)
@@ -32,7 +32,7 @@ namespace BehaviourLibraryTests
 		public void When_behave_Running_then_completes_until_running_behaviour()
 		{
 			_calledAndFailedTimes = 0;
-			var returnCode = new ParallelSelector(
+			var returnCode = new Selector(
 									new BehaviorAction(CalledAndFailed), 
 									new BehaviorAction(CalledAndRunning),
 									new BehaviorAction(() => BehaviorReturnCode.Success)
@@ -44,7 +44,7 @@ namespace BehaviourLibraryTests
 		[Test]
 		public void When_running_Then_complete_with_many_behave_calls()
 		{
-			var sequence = new ParallelSelector(
+			var sequence = new Selector(
 								new BehaviorAction(CalledAndFailed),
 								new BehaviorAction(new RunningTimes().Run), 
 								new BehaviorAction(() => BehaviorReturnCode.Success)

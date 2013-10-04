@@ -35,19 +35,19 @@ namespace BehaviourTreeExample
 			BehaviorAction animate = new BehaviorAction(updateAnimation);
 
 			//setup an initilization branch
-			ParallelSequence initialize = new ParallelSequence(initPathfinder, calcPath);
+			var initialize = new Sequence(initPathfinder, calcPath);
 
 			//if the target has moved, reset and calculate a new path
-			ParallelSelector ifMovedCreateNewPath = new ParallelSelector(new Inverter(targetMoved), new Inverter(reset), calcPath);
-			ParallelSelector ifPathFoundGetPath = new ParallelSelector(new Inverter(pathFound), getPath);
-			ParallelSelector ifPathNewUseIt = new ParallelSelector(new Inverter(isNewPath), setPath);
-			ParallelSelector ifReachedCellGetNext = new ParallelSelector(new Inverter(reachedCell), getNextCell);
-			ParallelSelector ifNotReachedTargetMoveTowardsCell = new ParallelSelector(reachedTarget, moveToCell);
+			var ifMovedCreateNewPath = new Selector(new Inverter(targetMoved), new Inverter(reset), calcPath);
+			var ifPathFoundGetPath = new Selector(new Inverter(pathFound), getPath);
+			var ifPathNewUseIt = new Selector(new Inverter(isNewPath), setPath);
+			var ifReachedCellGetNext = new Selector(new Inverter(reachedCell), getNextCell);
+			var ifNotReachedTargetMoveTowardsCell = new Selector(reachedTarget, moveToCell);
 
-			ParallelSequence follow = new ParallelSequence(new Inverter(tooClose), updatePosition, ifMovedCreateNewPath, ifPathFoundGetPath,
+			var follow = new Selector(new Inverter(tooClose), updatePosition, ifMovedCreateNewPath, ifPathFoundGetPath,
 				ifPathNewUseIt, ifReachedCellGetNext, ifNotReachedTargetMoveTowardsCell, animate);
 
-			RootSelector root = new RootSelector(SwitchBehaviours, initialize, follow);
+			var root = new RootSelector(SwitchBehaviours, initialize, follow);
 
 			//set a reference to the root
 			_behavior = new Behavior(root);

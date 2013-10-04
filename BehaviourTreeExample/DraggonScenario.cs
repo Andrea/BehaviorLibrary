@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics;
 using BehaviorLibrary;
 using BehaviorLibrary.Components.Actions;
 using BehaviorLibrary.Components.Composites;
@@ -35,7 +34,7 @@ namespace BehaviourTreeExample
 		{
 			var isThiefNearTreasureConditional = new Conditional(IsThiefNearTreasure);
 			var makethiefFleeAction = new BehaviorAction(MakeThiefFlee);
-			var sequence = new ParallelSequence(new Inverter(isThiefNearTreasureConditional), makethiefFleeAction);
+			var sequence = new Sequence(new Inverter(isThiefNearTreasureConditional), makethiefFleeAction);
 
 			var chooseCastleAction = new BehaviorAction(ChooseACastleToFlyTo);
 			var flytoCastleAction = new BehaviorAction(FlyToCastle);

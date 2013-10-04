@@ -10,8 +10,6 @@ namespace BehaviorLibrary
 		Running
 	}
 
-	public delegate BehaviorReturnCode BehaviorReturn();
-
 	public class Behavior
 	{
 		private readonly RootSelector _rootSelector;
@@ -47,7 +45,7 @@ namespace BehaviorLibrary
 			catch (Exception e)
 			{
 #if DEBUG
-				Console.Error.WriteLine(e.ToString());
+				Console.Error.WriteLine(e.Message, e.StackTrace);
 #endif
 				ReturnCode = BehaviorReturnCode.Failure;
 				return ReturnCode;

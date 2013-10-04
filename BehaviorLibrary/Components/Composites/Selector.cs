@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace BehaviorLibrary.Components.Composites
 {
     public class Selector : BehaviorComponent
     {
-
-        protected BehaviorComponent[] s_Behaviors;
+	    private BehaviorComponent[] _behaviors;
 
 
         /// <summary>
@@ -21,7 +17,7 @@ namespace BehaviorLibrary.Components.Composites
         /// <param name="behaviors">one to many behavior components</param>
         public Selector(params BehaviorComponent[] behaviors)
         {
-            s_Behaviors = behaviors;
+            _behaviors = behaviors;
         }
 
         /// <summary>
@@ -31,11 +27,11 @@ namespace BehaviorLibrary.Components.Composites
         public override BehaviorReturnCode Behave()
         {
             
-            for (int i = 0; i < s_Behaviors.Length; i++)
+            for (int i = 0; i < _behaviors.Length; i++)
             {
                 try
                 {
-                    switch (s_Behaviors[i].Behave())
+                    switch (_behaviors[i].Behave())
                     {
                         case BehaviorReturnCode.Failure:
                             continue;
@@ -54,7 +50,7 @@ namespace BehaviorLibrary.Components.Composites
 #if DEBUG
                 Console.Error.WriteLine(e.ToString());
 #endif
-                    continue;
+                    
                 }
             }
 

@@ -1,18 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace BehaviorLibrary.Components.Composites
 {
     public class PartialSelector : BehaviorComponent
     {
-
-        protected BehaviorComponent[] s_Behaviors;
-
-        private short selections = 0;
-
-        private short selLength = 0;
+        protected BehaviorComponent[] _behaviors;
+        private short _selections;
+        private short _selLength;
 
         /// <summary>
 		/// Selects among the given behavior components (one evaluation per Behave call)
@@ -24,8 +18,8 @@ namespace BehaviorLibrary.Components.Composites
         /// <param name="behaviors">one to many behavior components</param>
         public PartialSelector(params BehaviorComponent[] behaviors)
         {
-            s_Behaviors = behaviors;
-            selLength = (short)s_Behaviors.Length;
+            _behaviors = behaviors;
+            _selLength = (short)_behaviors.Length;
         }
 
         /// <summary>
@@ -34,25 +28,25 @@ namespace BehaviorLibrary.Components.Composites
         /// <returns>the behaviors return code</returns>
         public override BehaviorReturnCode Behave()
         {
-            while (selections < selLength)
+            while (_selections < _selLength)
             {
                 try
                 {
-                    switch (s_Behaviors[selections].Behave())
+                    switch (_behaviors[_selections].Behave())
                     {
                         case BehaviorReturnCode.Failure:
-                            selections++;
+                            _selections++;
                             ReturnCode = BehaviorReturnCode.Running;
                             return ReturnCode;
                         case BehaviorReturnCode.Success:
-                            selections = 0;
+                            _selections = 0;
                             ReturnCode = BehaviorReturnCode.Success;
                             return ReturnCode;
                         case BehaviorReturnCode.Running:
                             ReturnCode = BehaviorReturnCode.Running;
                             return ReturnCode;
                         default:
-                            selections++;
+                            _selections++;
                             ReturnCode = BehaviorReturnCode.Failure;
                             return ReturnCode;
                     }
@@ -62,17 +56,15 @@ namespace BehaviorLibrary.Components.Composites
 #if DEBUG
                 Console.Error.WriteLine(e.ToString());
 #endif
-                    selections++;
+                    _selections++;
                     ReturnCode = BehaviorReturnCode.Failure;
                     return ReturnCode;
                 }
             }
 
-            selections = 0;
+            _selections = 0;
             ReturnCode = BehaviorReturnCode.Failure;
             return ReturnCode;
         }
-
-
     }
 }
