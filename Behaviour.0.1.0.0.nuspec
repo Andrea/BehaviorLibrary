@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <package>
     <metadata>
-        <id>BehaviorLibrary</id>
+        <id>BehaviourLibrary</id>
         <version>0.1.0.0</version>
-        <title>Behavior Library</title>
+        <title>Behaviour Library</title>
         <authors>@silverspoon</authors>
         <owners />
         <projectUrl>https://github.com/Andrea/BehaviorLibrary</projectUrl>
@@ -12,6 +12,6 @@
         <language>en-IE</language>
     </metadata>    
     <files>
-        <file src="BehaviorLibrary\bin\Release\BehaviorLibrary.dll" target="lib\net40\BehaviorLibrary.dll" />                
+        <file src="BehaviorLibrary\bin\Release\BehaviourLibrary.dll" target="lib\net40\BehaviourLibrary.dll" />                
     </files>
 </package>
