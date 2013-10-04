@@ -1,11 +1,11 @@
 ﻿using System;
 
-namespace BehaviorLibrary.Components.Composites
+namespace BehaviourLibrary.Components.Composites
 {
     public class RootSelector : PartialSelector
     {
 
-        private BehaviorComponent[] rs_Behaviors;
+        private BehaviourComponent[] _rsBehaviours;
 
         private Func<int> rs_Index;
 
@@ -13,34 +13,34 @@ namespace BehaviorLibrary.Components.Composites
         /// The selector for the root node of the behavior tree
         /// </summary>
         /// <param name="index">an index representing which of the behavior branches to perform</param>
-        /// <param name="behaviors">the behavior branches to be selected from</param>
-        public RootSelector(Func<int> index, params BehaviorComponent[] behaviors)
+        /// <param name="behaviours">the behavior branches to be selected from</param>
+        public RootSelector(Func<int> index, params BehaviourComponent[] behaviours)
         {
             rs_Index = index;
-            rs_Behaviors = behaviors;
+            _rsBehaviours = behaviours;
         }
 
         /// <summary>
         /// performs the given behavior
         /// </summary>
         /// <returns>the behaviors return code</returns>
-        public override BehaviorReturnCode Behave()
+        public override BehaviourReturnCode Behave()
         {
             try
             {
-                switch (rs_Behaviors[rs_Index.Invoke()].Behave())
+                switch (_rsBehaviours[rs_Index.Invoke()].Behave())
                 {
-                    case BehaviorReturnCode.Failure:
-                        ReturnCode = BehaviorReturnCode.Failure;
+                    case BehaviourReturnCode.Failure:
+                        ReturnCode = BehaviourReturnCode.Failure;
                         return ReturnCode;
-                    case BehaviorReturnCode.Success:
-                        ReturnCode = BehaviorReturnCode.Success;
+                    case BehaviourReturnCode.Success:
+                        ReturnCode = BehaviourReturnCode.Success;
                         return ReturnCode;
-                    case BehaviorReturnCode.Running:
-                        ReturnCode = BehaviorReturnCode.Running;
+                    case BehaviourReturnCode.Running:
+                        ReturnCode = BehaviourReturnCode.Running;
                         return ReturnCode;
                     default:
-                        ReturnCode = BehaviorReturnCode.Running;
+                        ReturnCode = BehaviourReturnCode.Running;
                         return ReturnCode;
                 }
             }
@@ -49,7 +49,7 @@ namespace BehaviorLibrary.Components.Composites
 #if DEBUG
                 Console.Error.WriteLine(e.ToString());
 #endif
-                ReturnCode = BehaviorReturnCode.Failure;
+                ReturnCode = BehaviourReturnCode.Failure;
                 return ReturnCode;
             }
         }

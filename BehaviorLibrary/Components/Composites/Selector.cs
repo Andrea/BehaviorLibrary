@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace BehaviorLibrary.Components.Composites
+namespace BehaviourLibrary.Components.Composites
 {
-    public class Selector : BehaviorComponent
+    public class Selector : BehaviourComponent
     {
-	    private BehaviorComponent[] _behaviors;
+	    private BehaviourComponent[] _behaviours;
 
 
         /// <summary>
@@ -14,32 +14,32 @@ namespace BehaviorLibrary.Components.Composites
         /// -Returns Running if a behavior component returns Running
         /// -Returns Failure if all behavior components returned Failure
         /// </summary>
-        /// <param name="behaviors">one to many behavior components</param>
-        public Selector(params BehaviorComponent[] behaviors)
+        /// <param name="behaviours">one to many behavior components</param>
+        public Selector(params BehaviourComponent[] behaviours)
         {
-            _behaviors = behaviors;
+            _behaviours = behaviours;
         }
 
         /// <summary>
         /// performs the given behavior
         /// </summary>
         /// <returns>the behaviors return code</returns>
-        public override BehaviorReturnCode Behave()
+        public override BehaviourReturnCode Behave()
         {
             
-            for (int i = 0; i < _behaviors.Length; i++)
+            for (int i = 0; i < _behaviours.Length; i++)
             {
                 try
                 {
-                    switch (_behaviors[i].Behave())
+                    switch (_behaviours[i].Behave())
                     {
-                        case BehaviorReturnCode.Failure:
+                        case BehaviourReturnCode.Failure:
                             continue;
-                        case BehaviorReturnCode.Success:
-                            ReturnCode = BehaviorReturnCode.Success;
+                        case BehaviourReturnCode.Success:
+                            ReturnCode = BehaviourReturnCode.Success;
                             return ReturnCode;
-                        case BehaviorReturnCode.Running:
-                            ReturnCode = BehaviorReturnCode.Running;
+                        case BehaviourReturnCode.Running:
+                            ReturnCode = BehaviourReturnCode.Running;
                             return ReturnCode;
                         default:
                             continue;
@@ -54,7 +54,7 @@ namespace BehaviorLibrary.Components.Composites
                 }
             }
 
-            ReturnCode = BehaviorReturnCode.Failure;
+            ReturnCode = BehaviourReturnCode.Failure;
             return ReturnCode;
         }
     }

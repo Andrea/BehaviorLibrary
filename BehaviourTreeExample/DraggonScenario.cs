@@ -1,9 +1,9 @@
 ﻿using System;
-using BehaviorLibrary;
-using BehaviorLibrary.Components.Actions;
-using BehaviorLibrary.Components.Composites;
-using BehaviorLibrary.Components.Conditionals;
-using BehaviorLibrary.Components.Decorators;
+using BehaviourLibrary;
+using BehaviourLibrary.Components.Actions;
+using BehaviourLibrary.Components.Composites;
+using BehaviourLibrary.Components.Conditionals;
+using BehaviourLibrary.Components.Decorators;
 
 namespace BehaviourTreeExample
 {
@@ -26,27 +26,27 @@ namespace BehaviourTreeExample
 	/// </summary>
 	public class DraggonScenario
 	{
-		private Behavior _behavior;
+		private Behaviour _behaviour;
 		private int _i = 0;
 		private int _nodeState;
 
 		public void Setup()
 		{
 			var isThiefNearTreasureConditional = new Conditional(IsThiefNearTreasure);
-			var makethiefFleeAction = new BehaviorAction(MakeThiefFlee);
+			var makethiefFleeAction = new BehaviourAction(MakeThiefFlee);
 			var sequence = new Sequence(new Inverter(isThiefNearTreasureConditional), makethiefFleeAction);
 
-			var chooseCastleAction = new BehaviorAction(ChooseACastleToFlyTo);
-			var flytoCastleAction = new BehaviorAction(FlyToCastle);
-			var fightAction = new BehaviorAction(FightGuards);
+			var chooseCastleAction = new BehaviourAction(ChooseACastleToFlyTo);
+			var flytoCastleAction = new BehaviourAction(FlyToCastle);
+			var fightAction = new BehaviourAction(FightGuards);
 			var strongEnoughConditional = new Conditional(StrongEnough);
-			var takeGold = new BehaviorAction(TakeGold);
-			var flytoHomeAction = new BehaviorAction(FlyToHome);
-			var storeRobingsAction = new BehaviorAction(StoreGold);
+			var takeGold = new BehaviourAction(TakeGold);
+			var flytoHomeAction = new BehaviourAction(FlyToHome);
+			var storeRobingsAction = new BehaviourAction(StoreGold);
 			var secondSequence = new Sequence(chooseCastleAction, flytoCastleAction, fightAction, strongEnoughConditional, takeGold, 
 									flytoHomeAction, storeRobingsAction);
 			var rootSelector = new RootSelector(SwitchNodes, sequence, secondSequence);
-			_behavior = new Behavior(rootSelector);
+			_behaviour = new Behaviour(rootSelector);
 		}
 
 		private int SwitchNodes()
@@ -54,20 +54,20 @@ namespace BehaviourTreeExample
 			return _nodeState;
 		}
 
-		private BehaviorReturnCode StoreGold()
+		private BehaviourReturnCode StoreGold()
 		{
 			_nodeState++;
-			return Helper.LogAndReturn(BehaviorReturnCode.Success);
+			return Helper.LogAndReturn(BehaviourReturnCode.Success);
 		}
 
-		private BehaviorReturnCode FlyToHome()
+		private BehaviourReturnCode FlyToHome()
 		{
-			return Helper.LogAndReturn(BehaviorReturnCode.Success);
+			return Helper.LogAndReturn(BehaviourReturnCode.Success);
 		}
 
-		private BehaviorReturnCode TakeGold()
+		private BehaviourReturnCode TakeGold()
 		{
-			return Helper.LogAndReturn(BehaviorReturnCode.Success);
+			return Helper.LogAndReturn(BehaviourReturnCode.Success);
 		}
 
 		private bool StrongEnough()
@@ -75,38 +75,38 @@ namespace BehaviourTreeExample
 			return Helper.LogAndReturn(true);
 		}
 
-		private BehaviorReturnCode FightGuards()
+		private BehaviourReturnCode FightGuards()
 		{
-			return Helper.LogAndReturn(BehaviorReturnCode.Success);
+			return Helper.LogAndReturn(BehaviourReturnCode.Success);
 		}
 
-		private BehaviorReturnCode FlyToCastle()
+		private BehaviourReturnCode FlyToCastle()
 		{
-			return Helper.LogAndReturn(BehaviorReturnCode.Success);
+			return Helper.LogAndReturn(BehaviourReturnCode.Success);
 		}
 
-		private BehaviorReturnCode ChooseACastleToFlyTo()
+		private BehaviourReturnCode ChooseACastleToFlyTo()
 		{
-			return Helper.LogAndReturn(BehaviorReturnCode.Success);
+			return Helper.LogAndReturn(BehaviourReturnCode.Success);
 		}
 
 		public void Behave()
 		{
-			_behavior.Behave();
+			_behaviour.Behave();
 			Console.ReadLine();
 		}
 
 
-		private BehaviorReturnCode MakeThiefFlee()
+		private BehaviourReturnCode MakeThiefFlee()
 		{
 			if (_i < 3)
 			{
 				_i++;
-				return Helper.LogAndReturn(BehaviorReturnCode.Running);
+				return Helper.LogAndReturn(BehaviourReturnCode.Running);
 			}
 			
 			_nodeState++;
-			return Helper.LogAndReturn(BehaviorReturnCode.Success);
+			return Helper.LogAndReturn(BehaviourReturnCode.Success);
 		}
 
 		private bool IsThiefNearTreasure()

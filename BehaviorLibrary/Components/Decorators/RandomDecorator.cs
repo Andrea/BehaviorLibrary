@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace BehaviorLibrary.Components.Decorators
+namespace BehaviourLibrary.Components.Decorators
 {
-	public class RandomDecorator : BehaviorComponent
+	public class RandomDecorator : BehaviourComponent
 	{
-		private readonly BehaviorComponent _behaviorComponent;
+		private readonly BehaviourComponent _behaviourComponent;
 		private readonly float _probability;
 		private readonly Func<float> _rRandomFunction;
 
@@ -13,34 +13,34 @@ namespace BehaviorLibrary.Components.Decorators
 		/// </summary>
 		/// <param name="probability">probability of execution</param>
 		/// <param name="randomFunction">function that determines probability to execute</param>
-		/// <param name="behavior">behavior to execute</param>
-		public RandomDecorator(float probability, Func<float> randomFunction, BehaviorComponent behavior)
+		/// <param name="behaviour">behavior to execute</param>
+		public RandomDecorator(float probability, Func<float> randomFunction, BehaviourComponent behaviour)
 		{
 			_probability = probability;
 			_rRandomFunction = randomFunction;
-			_behaviorComponent = behavior;
+			_behaviourComponent = behaviour;
 		}
 
 
-		public override BehaviorReturnCode Behave()
+		public override BehaviourReturnCode Behave()
 		{
 			try
 			{
 				if (_rRandomFunction.Invoke() <= _probability)
 				{
-					ReturnCode = _behaviorComponent.Behave();
+					ReturnCode = _behaviourComponent.Behave();
 					return ReturnCode;
 				}
-				ReturnCode = BehaviorReturnCode.Running;
-				return BehaviorReturnCode.Running;
+				ReturnCode = BehaviourReturnCode.Running;
+				return BehaviourReturnCode.Running;
 			}
 			catch (Exception e)
 			{
 #if DEBUG
 				Console.Error.WriteLine(e.ToString());
 #endif
-				ReturnCode = BehaviorReturnCode.Failure;
-				return BehaviorReturnCode.Failure;
+				ReturnCode = BehaviourReturnCode.Failure;
+				return BehaviourReturnCode.Failure;
 			}
 		}
 	}

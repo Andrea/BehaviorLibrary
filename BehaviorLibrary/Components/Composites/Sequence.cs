@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace BehaviorLibrary.Components.Composites
+namespace BehaviourLibrary.Components.Composites
 {
-	public class Sequence : BehaviorComponent
+	public class Sequence : BehaviourComponent
 	{
-		private BehaviorComponent[] _behaviors;
+		private BehaviourComponent[] _behaviours;
 
 		/// <summary>
 		/// attempts to run the behaviors all in one cycle
@@ -12,33 +12,33 @@ namespace BehaviorLibrary.Components.Composites
 		/// -Returns Failure if one behavior fails or an error occurs
 		/// -Does not Return Running
 		/// </summary>
-		/// <param name="behaviors"></param>
-		public Sequence(params BehaviorComponent[] behaviors)
+		/// <param name="behaviours"></param>
+		public Sequence(params BehaviourComponent[] behaviours)
 		{
-			_behaviors = behaviors;
+			_behaviours = behaviours;
 		}
 
 		/// <summary>
 		/// performs the given behavior
 		/// </summary>
 		/// <returns>the behaviors return code</returns>
-		public override BehaviorReturnCode Behave()
+		public override BehaviourReturnCode Behave()
 		{
-			for (int i = 0; i < _behaviors.Length; i++)
+			for (int i = 0; i < _behaviours.Length; i++)
 			{
 				try
 				{
-					switch (_behaviors[i].Behave())
+					switch (_behaviours[i].Behave())
 					{
-						case BehaviorReturnCode.Failure:
-							ReturnCode = BehaviorReturnCode.Failure;
+						case BehaviourReturnCode.Failure:
+							ReturnCode = BehaviourReturnCode.Failure;
 							return ReturnCode;
-						case BehaviorReturnCode.Success:
+						case BehaviourReturnCode.Success:
 							continue;
-						case BehaviorReturnCode.Running:
+						case BehaviourReturnCode.Running:
 							continue;
 						default:
-							ReturnCode = BehaviorReturnCode.Success;
+							ReturnCode = BehaviourReturnCode.Success;
 							return ReturnCode;
 					}
 				}
@@ -47,11 +47,11 @@ namespace BehaviorLibrary.Components.Composites
 #if DEBUG
 					Console.Error.WriteLine(e.ToString());
 #endif
-					ReturnCode = BehaviorReturnCode.Failure;
+					ReturnCode = BehaviourReturnCode.Failure;
 					return ReturnCode;
 				}
 			}
-			ReturnCode = BehaviorReturnCode.Success;
+			ReturnCode = BehaviourReturnCode.Success;
 			return ReturnCode;
 		}
 

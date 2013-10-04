@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace BehaviorLibrary.Components.Decorators
+namespace BehaviourLibrary.Components.Decorators
 {
-	public class Counter : BehaviorComponent
+	public class Counter : BehaviourComponent
 	{
-		private readonly BehaviorComponent _behavior;
+		private readonly BehaviourComponent _behaviour;
 		private readonly int _maxCount;
 		private int _counter;
 
@@ -14,29 +14,29 @@ namespace BehaviorLibrary.Components.Decorators
 		///     -Counter executes the behavior when it reaches the supplied maxCount
 		/// </summary>
 		/// <param name="maxCount">max number to count to</param>
-		/// <param name="behavior">behavior to run</param>
-		public Counter(int maxCount, BehaviorComponent behavior)
+		/// <param name="behaviour">behavior to run</param>
+		public Counter(int maxCount, BehaviourComponent behaviour)
 		{
 			_maxCount = maxCount;
-			_behavior = behavior;
+			_behaviour = behaviour;
 		}
 
 		/// <summary>
 		///     performs the given behavior
 		/// </summary>
 		/// <returns>the behaviors return code</returns>
-		public override BehaviorReturnCode Behave()
+		public override BehaviourReturnCode Behave()
 		{
 			try
 			{
 				if (_counter < _maxCount)
 				{
 					_counter++;
-					ReturnCode = BehaviorReturnCode.Running;
-					return BehaviorReturnCode.Running;
+					ReturnCode = BehaviourReturnCode.Running;
+					return BehaviourReturnCode.Running;
 				}
 				_counter = 0;
-				ReturnCode = _behavior.Behave();
+				ReturnCode = _behaviour.Behave();
 				return ReturnCode;
 			}
 			catch (Exception e)
@@ -44,8 +44,8 @@ namespace BehaviorLibrary.Components.Decorators
 #if DEBUG
 				Console.Error.WriteLine(e.ToString());
 #endif
-				ReturnCode = BehaviorReturnCode.Failure;
-				return BehaviorReturnCode.Failure;
+				ReturnCode = BehaviourReturnCode.Failure;
+				return BehaviourReturnCode.Failure;
 			}
 		}
 	}

@@ -1,9 +1,9 @@
 ﻿using System;
-using BehaviorLibrary;
-using BehaviorLibrary.Components.Actions;
-using BehaviorLibrary.Components.Composites;
-using BehaviorLibrary.Components.Conditionals;
-using BehaviorLibrary.Components.Decorators;
+using BehaviourLibrary;
+using BehaviourLibrary.Components.Actions;
+using BehaviourLibrary.Components.Composites;
+using BehaviourLibrary.Components.Conditionals;
+using BehaviourLibrary.Components.Decorators;
 
 namespace BehaviourTreeExample
 {
@@ -12,7 +12,7 @@ namespace BehaviourTreeExample
 	/// </summary>
 	public class OriginalScenario
 	{
-		private Behavior _behavior;
+		private Behaviour _behaviour;
 
 		private void Setup()
 		{
@@ -24,15 +24,15 @@ namespace BehaviourTreeExample
 			var isNewPath = new Conditional(hasNewPath);
 
 			//setup all actions and their delegate functions
-			BehaviorAction moveToCell = new BehaviorAction(moveTowardsCell);
-			BehaviorAction calcPath = new BehaviorAction(calculatePath);
-			BehaviorAction initPathfinder = new BehaviorAction(initializePathfinder);
-			BehaviorAction getNextCell = new BehaviorAction(getNextPathCell);
-			BehaviorAction setPath = new BehaviorAction(setNewPath);
-			BehaviorAction getPath = new BehaviorAction(getCurrentPath);
-			BehaviorAction updatePosition = new BehaviorAction(updateTargetPosision);
-			BehaviorAction reset = new BehaviorAction(resetPathfinder);
-			BehaviorAction animate = new BehaviorAction(updateAnimation);
+			BehaviourAction moveToCell = new BehaviourAction(moveTowardsCell);
+			BehaviourAction calcPath = new BehaviourAction(calculatePath);
+			BehaviourAction initPathfinder = new BehaviourAction(initializePathfinder);
+			BehaviourAction getNextCell = new BehaviourAction(getNextPathCell);
+			BehaviourAction setPath = new BehaviourAction(setNewPath);
+			BehaviourAction getPath = new BehaviourAction(getCurrentPath);
+			BehaviourAction updatePosition = new BehaviourAction(updateTargetPosision);
+			BehaviourAction reset = new BehaviourAction(resetPathfinder);
+			BehaviourAction animate = new BehaviourAction(updateAnimation);
 
 			//setup an initilization branch
 			var initialize = new Sequence(initPathfinder, calcPath);
@@ -50,50 +50,50 @@ namespace BehaviourTreeExample
 			var root = new RootSelector(SwitchBehaviours, initialize, follow);
 
 			//set a reference to the root
-			_behavior = new Behavior(root);
+			_behaviour = new Behaviour(root);
 		}
 
 		public void Behave()
 		{
 			//to execute the behavior
-			_behavior.Behave();
+			_behaviour.Behave();
 			Console.ReadLine();
 		}
 
-		private BehaviorReturnCode updateAnimation()
+		private BehaviourReturnCode updateAnimation()
 		{
 
-			return BehaviorReturnCode.Success;
+			return BehaviourReturnCode.Success;
 		}
 
-		private BehaviorReturnCode resetPathfinder()
+		private BehaviourReturnCode resetPathfinder()
 		{
 			Console.WriteLine("Action - Reset path finder");
-			return BehaviorReturnCode.Success;
+			return BehaviourReturnCode.Success;
 		}
 
-		private BehaviorReturnCode updateTargetPosision()
+		private BehaviourReturnCode updateTargetPosision()
 		{
 			Console.WriteLine("Action - Update Target position ");
-			return BehaviorReturnCode.Success;
+			return BehaviourReturnCode.Success;
 		}
 
-		private BehaviorReturnCode getCurrentPath()
+		private BehaviourReturnCode getCurrentPath()
 		{
 			Console.WriteLine("Action - Get current path");
-			return BehaviorReturnCode.Success;
+			return BehaviourReturnCode.Success;
 		}
 
-		private BehaviorReturnCode setNewPath()
+		private BehaviourReturnCode setNewPath()
 		{
 			Console.WriteLine("Action - set new path ");
-			return BehaviorReturnCode.Success;
+			return BehaviourReturnCode.Success;
 		}
 
-		private BehaviorReturnCode getNextPathCell()
+		private BehaviourReturnCode getNextPathCell()
 		{
 			Console.WriteLine("Action - Get next path cell");
-			return BehaviorReturnCode.Success;
+			return BehaviourReturnCode.Success;
 		}
 
 		private bool hasNewPath()
@@ -120,22 +120,22 @@ namespace BehaviourTreeExample
 			return true;
 		}
 
-		private BehaviorReturnCode initializePathfinder()
+		private BehaviourReturnCode initializePathfinder()
 		{
 			Console.WriteLine("Action - init path finder");
-			return BehaviorReturnCode.Success;
+			return BehaviourReturnCode.Success;
 		}
 
-		private BehaviorReturnCode calculatePath()
+		private BehaviourReturnCode calculatePath()
 		{
 			Console.WriteLine("Action - CAlculate Path");
-			return BehaviorReturnCode.Success;
+			return BehaviourReturnCode.Success;
 		}
 
-		private BehaviorReturnCode moveTowardsCell()
+		private BehaviourReturnCode moveTowardsCell()
 		{
 			Console.WriteLine("Action - Move towards cell");
-			return BehaviorReturnCode.Success;
+			return BehaviourReturnCode.Success;
 		}
 
 		private bool hasTargetMoved()

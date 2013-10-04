@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace BehaviorLibrary.Components.Decorators
+namespace BehaviourLibrary.Components.Decorators
 {
-	public class Timer : BehaviorComponent
+	public class Timer : BehaviourComponent
 	{
-		private readonly BehaviorComponent _behaviorComponent;
+		private readonly BehaviourComponent _behaviourComponent;
 		private readonly Func<int> _elapsedTimeFunction;
 
 		private readonly int _waitTime;
@@ -15,11 +15,11 @@ namespace BehaviorLibrary.Components.Decorators
 		/// </summary>
 		/// <param name="elapsedTimeFunction">function that returns elapsed time</param>
 		/// <param name="timeToWait">maximum time to wait before executing behavior</param>
-		/// <param name="behavior">behavior to run</param>
-		public Timer(Func<int> elapsedTimeFunction, int timeToWait, BehaviorComponent behavior)
+		/// <param name="behaviour">behavior to run</param>
+		public Timer(Func<int> elapsedTimeFunction, int timeToWait, BehaviourComponent behaviour)
 		{
 			_elapsedTimeFunction = elapsedTimeFunction;
-			_behaviorComponent = behavior;
+			_behaviourComponent = behaviour;
 			_waitTime = timeToWait;
 		}
 
@@ -27,7 +27,7 @@ namespace BehaviorLibrary.Components.Decorators
 		///     performs the given behavior
 		/// </summary>
 		/// <returns>the behaviors return code</returns>
-		public override BehaviorReturnCode Behave()
+		public override BehaviourReturnCode Behave()
 		{
 			try
 			{
@@ -36,19 +36,19 @@ namespace BehaviorLibrary.Components.Decorators
 				if (_timeElapsed >= _waitTime)
 				{
 					_timeElapsed = 0;
-					ReturnCode = _behaviorComponent.Behave();
+					ReturnCode = _behaviourComponent.Behave();
 					return ReturnCode;
 				}
-				ReturnCode = BehaviorReturnCode.Running;
-				return BehaviorReturnCode.Running;
+				ReturnCode = BehaviourReturnCode.Running;
+				return BehaviourReturnCode.Running;
 			}
 			catch (Exception e)
 			{
 #if DEBUG
 				Console.Error.WriteLine(e.ToString());
 #endif
-				ReturnCode = BehaviorReturnCode.Failure;
-				return BehaviorReturnCode.Failure;
+				ReturnCode = BehaviourReturnCode.Failure;
+				return BehaviourReturnCode.Failure;
 			}
 		}
 	}

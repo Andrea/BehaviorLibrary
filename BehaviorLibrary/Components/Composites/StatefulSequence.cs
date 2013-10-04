@@ -1,10 +1,10 @@
 using System;
 
-namespace BehaviorLibrary.Components.Composites
+namespace BehaviourLibrary.Components.Composites
 {
-	public class StatefulSequence : BehaviorComponent
+	public class StatefulSequence : BehaviourComponent
 	{
-		private BehaviorComponent[] _behaviors;
+		private BehaviourComponent[] _behaviours;
 
 		private int _lastBehavior;
 
@@ -14,33 +14,33 @@ namespace BehaviorLibrary.Components.Composites
 		/// -Returns Failure if one behavior fails or an error occurs
 		/// -Does not Return Running
 		/// </summary>
-		/// <param name="behaviors"></param>
-		public StatefulSequence (params BehaviorComponent[] behaviors){
-			_behaviors = behaviors;
+		/// <param name="behaviours"></param>
+		public StatefulSequence (params BehaviourComponent[] behaviours){
+			_behaviours = behaviours;
 		}
 
 		/// <summary>
 		/// performs the given behavior
 		/// </summary>
 		/// <returns>the behaviors return code</returns>
-		public override BehaviorReturnCode Behave(){
+		public override BehaviourReturnCode Behave(){
 
 			//start from last remembered position
-			for(; _lastBehavior < _behaviors.Length;_lastBehavior++){
+			for(; _lastBehavior < _behaviours.Length;_lastBehavior++){
 				try{
-					switch (_behaviors[_lastBehavior].Behave()){
-					case BehaviorReturnCode.Failure:
+					switch (_behaviours[_lastBehavior].Behave()){
+					case BehaviourReturnCode.Failure:
 						_lastBehavior = 0;
-						ReturnCode = BehaviorReturnCode.Failure;
+						ReturnCode = BehaviourReturnCode.Failure;
 						return ReturnCode;
-					case BehaviorReturnCode.Success:
+					case BehaviourReturnCode.Success:
 						continue;
-					case BehaviorReturnCode.Running:
-						ReturnCode = BehaviorReturnCode.Running;
+					case BehaviourReturnCode.Running:
+						ReturnCode = BehaviourReturnCode.Running;
 						return ReturnCode;
 					default:
 						_lastBehavior = 0;
-						ReturnCode = BehaviorReturnCode.Success;
+						ReturnCode = BehaviourReturnCode.Success;
 						return ReturnCode;
 					}
 				}
@@ -49,12 +49,12 @@ namespace BehaviorLibrary.Components.Composites
 					Console.Error.WriteLine(e.ToString());
 #endif
 					_lastBehavior = 0;
-					ReturnCode = BehaviorReturnCode.Failure;
+					ReturnCode = BehaviourReturnCode.Failure;
 					return ReturnCode;
 				}
 			}
 			_lastBehavior = 0;
-			ReturnCode = BehaviorReturnCode.Success;
+			ReturnCode = BehaviourReturnCode.Success;
 			return ReturnCode;
 		}
 	}

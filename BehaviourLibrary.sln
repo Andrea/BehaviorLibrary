@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BehaviorLibrary", "BehaviorLibrary\BehaviorLibrary.csproj", "{CC824B6F-6145-485F-9604-FB94F0ECACA7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BehaviourLibrary", "BehaviorLibrary\BehaviourLibrary.csproj", "{CC824B6F-6145-485F-9604-FB94F0ECACA7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BehaviourLibraryTests", "BehaviourLibraryTests\BehaviourLibraryTests.csproj", "{E897EAEC-3027-4F0E-9C92-0DFAA3A8E32C}"
 EndProject

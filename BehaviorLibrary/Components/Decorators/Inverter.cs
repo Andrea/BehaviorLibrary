@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace BehaviorLibrary.Components.Decorators
+namespace BehaviourLibrary.Components.Decorators
 {
-	public class Inverter : BehaviorComponent
+	public class Inverter : BehaviourComponent
 	{
-		private readonly BehaviorComponent _behaviorComponent;
+		private readonly BehaviourComponent _behaviourComponent;
 
 		/// <summary>
 		///     inverts the given behavior
@@ -12,30 +12,30 @@ namespace BehaviorLibrary.Components.Decorators
 		///     -Returns Failure on Success
 		///     -Returns Running on Running
 		/// </summary>
-		/// <param name="behavior"></param>
-		public Inverter(BehaviorComponent behavior)
+		/// <param name="behaviour"></param>
+		public Inverter(BehaviourComponent behaviour)
 		{
-			_behaviorComponent = behavior;
+			_behaviourComponent = behaviour;
 		}
 
 		/// <summary>
 		///     performs the given behavior
 		/// </summary>
 		/// <returns>the behaviors return code</returns>
-		public override BehaviorReturnCode Behave()
+		public override BehaviourReturnCode Behave()
 		{
 			try
 			{
-				switch (_behaviorComponent.Behave())
+				switch (_behaviourComponent.Behave())
 				{
-					case BehaviorReturnCode.Failure:
-						ReturnCode = BehaviorReturnCode.Success;
+					case BehaviourReturnCode.Failure:
+						ReturnCode = BehaviourReturnCode.Success;
 						return ReturnCode;
-					case BehaviorReturnCode.Success:
-						ReturnCode = BehaviorReturnCode.Failure;
+					case BehaviourReturnCode.Success:
+						ReturnCode = BehaviourReturnCode.Failure;
 						return ReturnCode;
-					case BehaviorReturnCode.Running:
-						ReturnCode = BehaviorReturnCode.Running;
+					case BehaviourReturnCode.Running:
+						ReturnCode = BehaviourReturnCode.Running;
 						return ReturnCode;
 				}
 			}
@@ -44,11 +44,11 @@ namespace BehaviorLibrary.Components.Decorators
 #if DEBUG
 				Console.Error.WriteLine(e.ToString());
 #endif
-				ReturnCode = BehaviorReturnCode.Success;
+				ReturnCode = BehaviourReturnCode.Success;
 				return ReturnCode;
 			}
 
-			ReturnCode = BehaviorReturnCode.Success;
+			ReturnCode = BehaviourReturnCode.Success;
 			return ReturnCode;
 		}
 	}

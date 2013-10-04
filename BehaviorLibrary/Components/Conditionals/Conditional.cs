@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace BehaviorLibrary.Components.Conditionals
+namespace BehaviourLibrary.Components.Conditionals
 {
-	public class Conditional : BehaviorComponent
+	public class Conditional : BehaviourComponent
 	{
 		private readonly Func<Boolean> _conditional;
 
@@ -21,20 +21,20 @@ namespace BehaviorLibrary.Components.Conditionals
 		///     performs the given behavior
 		/// </summary>
 		/// <returns>the behaviors return code</returns>
-		public override BehaviorReturnCode Behave()
+		public override BehaviourReturnCode Behave()
 		{
 			try
 			{
 				switch (_conditional.Invoke())
 				{
 					case true:
-						ReturnCode = BehaviorReturnCode.Success;
+						ReturnCode = BehaviourReturnCode.Success;
 						return ReturnCode;
 					case false:
-						ReturnCode = BehaviorReturnCode.Failure;
+						ReturnCode = BehaviourReturnCode.Failure;
 						return ReturnCode;
 					default:
-						ReturnCode = BehaviorReturnCode.Failure;
+						ReturnCode = BehaviourReturnCode.Failure;
 						return ReturnCode;
 				}
 			}
@@ -43,7 +43,7 @@ namespace BehaviorLibrary.Components.Conditionals
 #if DEBUG
 				Console.Error.WriteLine(e.ToString());
 #endif
-				ReturnCode = BehaviorReturnCode.Failure;
+				ReturnCode = BehaviourReturnCode.Failure;
 				return ReturnCode;
 			}
 		}

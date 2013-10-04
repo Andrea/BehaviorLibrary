@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace BehaviorLibrary.Components.Composites
+namespace BehaviourLibrary.Components.Composites
 {
-	public class RandomSelector : BehaviorComponent
+	public class RandomSelector : BehaviourComponent
 	{
-		private readonly BehaviorComponent[] _behaviorComponents;
+		private readonly BehaviourComponent[] _behaviourComponents;
 
 		//use current milliseconds to set random seed
 		private Random r_Random = new Random(DateTime.Now.Millisecond);
@@ -15,35 +15,35 @@ namespace BehaviorLibrary.Components.Composites
 		///     -Returns Failure if selected behavior returns Failure
 		///     -Returns Running if selected behavior returns Running
 		/// </summary>
-		/// <param name="behaviors">one to many behavior components</param>
-		public RandomSelector(params BehaviorComponent[] behaviors)
+		/// <param name="behaviours">one to many behavior components</param>
+		public RandomSelector(params BehaviourComponent[] behaviours)
 		{
-			_behaviorComponents = behaviors;
+			_behaviourComponents = behaviours;
 		}
 
 		/// <summary>
 		///     performs the given behavior
 		/// </summary>
 		/// <returns>the behaviors return code</returns>
-		public override BehaviorReturnCode Behave()
+		public override BehaviourReturnCode Behave()
 		{
 			r_Random = new Random(DateTime.Now.Millisecond);
 
 			try
 			{
-				switch (_behaviorComponents[r_Random.Next(0, _behaviorComponents.Length - 1)].Behave())
+				switch (_behaviourComponents[r_Random.Next(0, _behaviourComponents.Length - 1)].Behave())
 				{
-					case BehaviorReturnCode.Failure:
-						ReturnCode = BehaviorReturnCode.Failure;
+					case BehaviourReturnCode.Failure:
+						ReturnCode = BehaviourReturnCode.Failure;
 						return ReturnCode;
-					case BehaviorReturnCode.Success:
-						ReturnCode = BehaviorReturnCode.Success;
+					case BehaviourReturnCode.Success:
+						ReturnCode = BehaviourReturnCode.Success;
 						return ReturnCode;
-					case BehaviorReturnCode.Running:
-						ReturnCode = BehaviorReturnCode.Running;
+					case BehaviourReturnCode.Running:
+						ReturnCode = BehaviourReturnCode.Running;
 						return ReturnCode;
 					default:
-						ReturnCode = BehaviorReturnCode.Failure;
+						ReturnCode = BehaviourReturnCode.Failure;
 						return ReturnCode;
 				}
 			}
@@ -52,7 +52,7 @@ namespace BehaviorLibrary.Components.Composites
 #if DEBUG
 				Console.Error.WriteLine(e.ToString());
 #endif
-				ReturnCode = BehaviorReturnCode.Failure;
+				ReturnCode = BehaviourReturnCode.Failure;
 				return ReturnCode;
 			}
 		}

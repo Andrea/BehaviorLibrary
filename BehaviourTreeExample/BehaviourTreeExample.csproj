@@ -47,9 +47,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BehaviorLibrary\BehaviorLibrary.csproj">
+    <ProjectReference Include="..\BehaviorLibrary\BehaviourLibrary.csproj">
       <Project>{cc824b6f-6145-485f-9604-fb94f0ecaca7}</Project>
-      <Name>BehaviorLibrary</Name>
+      <Name>BehaviourLibrary</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

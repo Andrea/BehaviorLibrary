@@ -1,10 +1,10 @@
 ﻿using System;
 
-namespace BehaviorLibrary.Components.Composites
+namespace BehaviourLibrary.Components.Composites
 {
-    public class PartialSequence : BehaviorComponent
+    public class PartialSequence : BehaviourComponent
     {
-	    private BehaviorComponent[] _behaviors;
+	    private BehaviourComponent[] _behaviours;
         private short _sequence;
         private short _seqLength;
         
@@ -15,36 +15,36 @@ namespace BehaviorLibrary.Components.Composites
         /// -Returns Running if an individual behavior component returns Success or Running
         /// -Returns Failure if a behavior components returns Failure or an error is encountered
         /// </summary>
-        /// <param name="behaviors">one to many behavior components</param>
-        public PartialSequence(params BehaviorComponent[] behaviors)
+        /// <param name="behaviours">one to many behavior components</param>
+        public PartialSequence(params BehaviourComponent[] behaviours)
         {
-            _behaviors = behaviors;
-            _seqLength = (short) _behaviors.Length;
+            _behaviours = behaviours;
+            _seqLength = (short) _behaviours.Length;
         }
 
         /// <summary>
         /// performs the given behavior
         /// </summary>
         /// <returns>the behaviors return code</returns>
-        public override BehaviorReturnCode Behave()
+        public override BehaviourReturnCode Behave()
         {
             //while you can go through them, do so
             while (_sequence < _seqLength)
             {
                 try
                 {
-                    switch (_behaviors[_sequence].Behave())
+                    switch (_behaviours[_sequence].Behave())
                     {
-                        case BehaviorReturnCode.Failure:
+                        case BehaviourReturnCode.Failure:
                             _sequence = 0;
-                            ReturnCode = BehaviorReturnCode.Failure;
+                            ReturnCode = BehaviourReturnCode.Failure;
                             return ReturnCode;
-                        case BehaviorReturnCode.Success:
+                        case BehaviourReturnCode.Success:
                             _sequence++;
-                            ReturnCode = BehaviorReturnCode.Running;
+                            ReturnCode = BehaviourReturnCode.Running;
                             return ReturnCode;
-                        case BehaviorReturnCode.Running:
-                            ReturnCode = BehaviorReturnCode.Running;
+                        case BehaviourReturnCode.Running:
+                            ReturnCode = BehaviourReturnCode.Running;
                             return ReturnCode;
                     }
                 }
@@ -54,14 +54,14 @@ namespace BehaviorLibrary.Components.Composites
                 Console.Error.WriteLine(e.ToString());
 #endif
                     _sequence = 0;
-                    ReturnCode = BehaviorReturnCode.Failure;
+                    ReturnCode = BehaviourReturnCode.Failure;
                     return ReturnCode;
                 }
 
             }
 
             _sequence = 0;
-            ReturnCode = BehaviorReturnCode.Success;
+            ReturnCode = BehaviourReturnCode.Success;
             return ReturnCode;
 
         }
