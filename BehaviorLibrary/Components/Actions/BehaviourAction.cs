@@ -19,7 +19,11 @@ namespace BehaviourLibrary.Components.Actions
 		{
 			try
 			{
-				switch (_action.Invoke())
+				var returnCode = _action.Invoke();
+#if DEBUG
+				Behaviour.NodeInfo.AppendFormat("Action: {0} code: {1} \n", _action.Method.Name, returnCode);
+#endif
+				switch (returnCode)
 				{
 					case BehaviourReturnCode.Success:
 						ReturnCode = BehaviourReturnCode.Success;

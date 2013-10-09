@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 using BehaviourLibrary.Components.Composites;
 
 namespace BehaviourLibrary
@@ -13,7 +14,6 @@ namespace BehaviourLibrary
 	public class Behaviour
 	{
 		private readonly RootSelector _rootSelector;
-
 		
 		public Behaviour(RootSelector root)
 		{
@@ -24,6 +24,13 @@ namespace BehaviourLibrary
 
 		public BehaviourReturnCode Behave()
 		{
+			ClearNodeInfos();
+			return BehaveInternal();
+		}
+
+		private BehaviourReturnCode BehaveInternal()
+		{
+			
 			try
 			{
 				switch (_rootSelector.Behave())
@@ -51,5 +58,16 @@ namespace BehaviourLibrary
 				return ReturnCode;
 			}
 		}
+
+
+		public static StringBuilder NodeInfo = new StringBuilder();
+
+		public string NodeInfos { get { return NodeInfo.ToString(); }}
+
+		public void ClearNodeInfos()
+		{
+			NodeInfo.Clear();
+		}
+
 	}
 }

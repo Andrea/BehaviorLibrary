@@ -1,21 +1,20 @@
-using System;
+﻿using System;
 
 namespace BehaviourLibrary.Components.Composites
 {
-	public class StatefulSequence : BehaviourComponent
+	//TODO Create SelectorExclusive
+	public class SequenceExclusive : BehaviourComponent
 	{
 		private BehaviourComponent[] _behaviours;
 
-		private int _lastBehavior;
-
 		/// <summary>
-		/// attempts to run the behaviors all in one cycle (stateful on running)
+		/// attempts to run the behaviors all in one cycle
 		/// -Returns Success when all are successful
 		/// -Returns Failure if one behavior fails or an error occurs
-		/// -Does not Return Running
+		/// -Returns Running if one behavior returns Running
 		/// </summary>
 		/// <param name="behaviours"></param>
-		public StatefulSequence(params BehaviourComponent[] behaviours)
+		public SequenceExclusive(params BehaviourComponent[] behaviours)
 		{
 			_behaviours = behaviours;
 		}
@@ -26,16 +25,13 @@ namespace BehaviourLibrary.Components.Composites
 		/// <returns>the behaviors return code</returns>
 		public override BehaviourReturnCode Behave()
 		{
-
-			//start from last remembered position
-			for (; _lastBehavior < _behaviours.Length; _lastBehavior++)
+			for (int i = 0; i < _behaviours.Length; i++)
 			{
 				try
 				{
-					switch (_behaviours[_lastBehavior].Behave())
+					switch (_behaviours[i].Behave())
 					{
 						case BehaviourReturnCode.Failure:
-							_lastBehavior = 0;
 							ReturnCode = BehaviourReturnCode.Failure;
 							return ReturnCode;
 						case BehaviourReturnCode.Success:
@@ -44,7 +40,6 @@ namespace BehaviourLibrary.Components.Composites
 							ReturnCode = BehaviourReturnCode.Running;
 							return ReturnCode;
 						default:
-							_lastBehavior = 0;
 							ReturnCode = BehaviourReturnCode.Success;
 							return ReturnCode;
 					}
@@ -54,15 +49,14 @@ namespace BehaviourLibrary.Components.Composites
 #if DEBUG
 					Console.Error.WriteLine(e.ToString());
 #endif
-					_lastBehavior = 0;
 					ReturnCode = BehaviourReturnCode.Failure;
 					return ReturnCode;
 				}
 			}
-			_lastBehavior = 0;
 			ReturnCode = BehaviourReturnCode.Success;
 			return ReturnCode;
 		}
+
+
 	}
 }
-

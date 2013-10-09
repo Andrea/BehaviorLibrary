@@ -4,10 +4,9 @@ namespace BehaviourLibrary.Components.Composites
 {
     public class RootSelector : PartialSelector
     {
+        private BehaviourComponent[] _behaviours;
 
-        private BehaviourComponent[] _rsBehaviours;
-
-        private Func<int> rs_Index;
+        private Func<int> _index;
 
         /// <summary>
         /// The selector for the root node of the behavior tree
@@ -16,8 +15,8 @@ namespace BehaviourLibrary.Components.Composites
         /// <param name="behaviours">the behavior branches to be selected from</param>
         public RootSelector(Func<int> index, params BehaviourComponent[] behaviours)
         {
-            rs_Index = index;
-            _rsBehaviours = behaviours;
+            _index = index;
+            _behaviours = behaviours;
         }
 
         /// <summary>
@@ -28,7 +27,7 @@ namespace BehaviourLibrary.Components.Composites
         {
             try
             {
-                switch (_rsBehaviours[rs_Index.Invoke()].Behave())
+                switch (_behaviours[_index.Invoke()].Behave())
                 {
                     case BehaviourReturnCode.Failure:
                         ReturnCode = BehaviourReturnCode.Failure;

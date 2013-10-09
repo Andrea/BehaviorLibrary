@@ -25,7 +25,12 @@ namespace BehaviourLibrary.Components.Conditionals
 		{
 			try
 			{
-				switch (_conditional.Invoke())
+
+				var conditionalResult = _conditional.Invoke();
+#if DEBUG
+				Behaviour.NodeInfo.AppendFormat("Conditional: {0} {1} \n", _conditional.Method.Name, conditionalResult);
+#endif
+				switch (conditionalResult)
 				{
 					case true:
 						ReturnCode = BehaviourReturnCode.Success;

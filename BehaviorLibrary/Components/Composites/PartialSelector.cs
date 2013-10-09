@@ -4,7 +4,7 @@ namespace BehaviourLibrary.Components.Composites
 {
     public class PartialSelector : BehaviourComponent
     {
-        protected BehaviourComponent[] _behaviours;
+	    private BehaviourComponent[] _behaviours;
         private short _selections;
         private short _selLength;
 
