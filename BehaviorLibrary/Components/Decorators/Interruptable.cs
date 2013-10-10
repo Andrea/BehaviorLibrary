@@ -23,10 +23,12 @@ namespace BehaviourLibrary.Components.Decorators
 			{
 				if (_interruptCondition.Behave() == BehaviourReturnCode.Success)
 				{
+					ReturnCode = _onInterruptReturn;
 					return _onInterruptReturn;
 				}
 
-				return _behaviourComponent.Behave();
+				ReturnCode = _behaviourComponent.Behave();
+				return ReturnCode;
 			}
 			catch (Exception e)
 			{
