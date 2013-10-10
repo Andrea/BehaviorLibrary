@@ -3,7 +3,7 @@ using BehaviourLibrary.Components.Conditionals;
 
 namespace BehaviourLibrary.Components.Decorators
 {
-	public class Interruptable : BehaviourComponent
+	public class Interruptible : BehaviourComponent
 	{
 		private readonly BehaviourComponent _behaviourComponent;
 		private readonly Conditional _interruptCondition;
@@ -21,7 +21,7 @@ namespace BehaviourLibrary.Components.Decorators
 		/// <param name="behaviour"></param>
 		/// <param name="interruptCondition"></param>
 		/// <param name="onInterruptReturn"></param>
-		public Interruptable(BehaviourComponent behaviour, Conditional interruptCondition,
+		public Interruptible(BehaviourComponent behaviour, Conditional interruptCondition,
 			BehaviourReturnCode onInterruptReturn)
 		{
 			_behaviourComponent = behaviour;

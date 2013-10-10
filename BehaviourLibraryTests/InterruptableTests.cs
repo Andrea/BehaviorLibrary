@@ -18,9 +18,9 @@ namespace BehaviourLibraryTests
 
 			var condition = new Conditional(() => false);
 
-			var successInterruptable = new Interruptable(successAction, condition, BehaviourReturnCode.Failure);
-			var failureInterruptable = new Interruptable(failureAction, condition, BehaviourReturnCode.Failure);
-			var runningInterruptable = new Interruptable(runningAction, condition, BehaviourReturnCode.Failure);
+			var successInterruptable = new Interruptible(successAction, condition, BehaviourReturnCode.Failure);
+			var failureInterruptable = new Interruptible(failureAction, condition, BehaviourReturnCode.Failure);
+			var runningInterruptable = new Interruptible(runningAction, condition, BehaviourReturnCode.Failure);
 
 			Assert.AreEqual(successInterruptable.Behave(), BehaviourReturnCode.Success);
 			Assert.AreEqual(failureInterruptable.Behave(), BehaviourReturnCode.Failure);
@@ -34,9 +34,9 @@ namespace BehaviourLibraryTests
 
 			var condition = new Conditional(() => true);
 
-			var successInterruptable = new Interruptable(action, condition, BehaviourReturnCode.Success);
-			var failureInterruptable = new Interruptable(action, condition, BehaviourReturnCode.Failure);
-			var runningInterruptable = new Interruptable(action, condition, BehaviourReturnCode.Running);
+			var successInterruptable = new Interruptible(action, condition, BehaviourReturnCode.Success);
+			var failureInterruptable = new Interruptible(action, condition, BehaviourReturnCode.Failure);
+			var runningInterruptable = new Interruptible(action, condition, BehaviourReturnCode.Running);
 
 			Assert.AreEqual(successInterruptable.Behave(), BehaviourReturnCode.Success);
 			Assert.AreEqual(failureInterruptable.Behave(), BehaviourReturnCode.Failure);
