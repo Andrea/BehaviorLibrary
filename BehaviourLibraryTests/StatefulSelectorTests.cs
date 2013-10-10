@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace BehaviourLibraryTests
 {
 	[TestFixture]
-	public class SelectorTests
+	public class StatefulSelectorTests
 	{
 		private int _calledAndFailedTimes;
 
@@ -33,10 +33,10 @@ namespace BehaviourLibraryTests
 		{
 			_calledAndFailedTimes = 0;
 			var returnCode = new StatefulSelector(
-									new BehaviourAction(CalledAndFailed), 
-									new BehaviourAction(CalledAndRunning),
-									new BehaviourAction(() => BehaviourReturnCode.Success)
-								).Behave();
+				new BehaviourAction(CalledAndFailed), 
+				new BehaviourAction(CalledAndRunning),
+				new BehaviourAction(() => BehaviourReturnCode.Success)
+				).Behave();
 			Assert.AreEqual(1, _calledAndFailedTimes);
 			Assert.AreEqual(BehaviourReturnCode.Running, returnCode);
 		}
@@ -45,10 +45,10 @@ namespace BehaviourLibraryTests
 		public void When_running_Then_complete_with_many_behave_calls()
 		{
 			var sequence = new StatefulSelector(
-								new BehaviourAction(CalledAndFailed),
-								new BehaviourAction(new RunningTimes().Run), 
-								new BehaviourAction(() => BehaviourReturnCode.Success)
-						);
+				new BehaviourAction(CalledAndFailed),
+				new BehaviourAction(new TestsHelper().RunningTwiceThenSuccess), 
+				new BehaviourAction(() => BehaviourReturnCode.Success)
+				);
 			Assert.AreEqual(BehaviourReturnCode.Running, sequence.Behave());
 			Assert.AreEqual(BehaviourReturnCode.Running, sequence.Behave());
 			Assert.AreEqual(BehaviourReturnCode.Running, sequence.Behave());

@@ -40,9 +40,12 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SelectorTests.cs" />
-    <Compile Include="SequenceTests.cs" />
+    <Compile Include="ExclusiveSelectorTests.cs" />
+    <Compile Include="ExclusiveSequenceTest.cs" />
+    <Compile Include="StatefulSelectorTests.cs" />
+    <Compile Include="TestsHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StatefulSequenceTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

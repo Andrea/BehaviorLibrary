@@ -39,10 +39,11 @@
     <Compile Include="Behaviour.cs" />
     <Compile Include="Components\Actions\BehaviourAction.cs" />
     <Compile Include="Components\BehaviourComponent.cs" />
+    <Compile Include="Components\Composites\ExclusiveSelector.cs" />
     <Compile Include="Components\Composites\RandomSelector.cs" />
     <Compile Include="Components\Composites\RootSelector.cs" />
     <Compile Include="Components\Composites\Selector.cs" />
-    <Compile Include="Components\Composites\SequenceExclusive.cs" />
+    <Compile Include="Components\Composites\ExclusiveSequence.cs" />
     <Compile Include="Components\Conditionals\Conditional.cs" />
     <Compile Include="Components\Decorators\Counter.cs" />
     <Compile Include="Components\Decorators\Inverter.cs" />

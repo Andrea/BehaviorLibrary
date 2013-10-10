@@ -50,7 +50,6 @@ namespace BehaviourLibrary.Components.Composites
 #if DEBUG
                 Console.Error.WriteLine(e.ToString());
 #endif
-                    
                 }
             }
 

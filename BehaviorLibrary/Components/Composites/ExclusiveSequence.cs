@@ -2,19 +2,18 @@
 
 namespace BehaviourLibrary.Components.Composites
 {
-	//TODO Create SelectorExclusive
-	public class SequenceExclusive : BehaviourComponent
+	public class ExclusiveSequence : BehaviourComponent
 	{
 		private BehaviourComponent[] _behaviours;
 
 		/// <summary>
-		/// attempts to run the behaviors all in one cycle
+		/// Attempts to run the behaviors all in one cycle
 		/// -Returns Success when all are successful
 		/// -Returns Failure if one behavior fails or an error occurs
 		/// -Returns Running if one behavior returns Running
 		/// </summary>
 		/// <param name="behaviours"></param>
-		public SequenceExclusive(params BehaviourComponent[] behaviours)
+		public ExclusiveSequence(params BehaviourComponent[] behaviours)
 		{
 			_behaviours = behaviours;
 		}
