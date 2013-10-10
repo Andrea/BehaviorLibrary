@@ -46,6 +46,7 @@
     <Compile Include="Components\Composites\ExclusiveSequence.cs" />
     <Compile Include="Components\Conditionals\Conditional.cs" />
     <Compile Include="Components\Decorators\Counter.cs" />
+    <Compile Include="Components\Decorators\Interruptible.cs" />
     <Compile Include="Components\Decorators\Inverter.cs" />
     <Compile Include="Components\Decorators\RandomDecorator.cs" />
     <Compile Include="Components\Decorators\Timer.cs" />
