@@ -1,4 +1,5 @@
-﻿using BehaviourLibrary;
+﻿using System;
+using BehaviourLibrary;
 using BehaviourLibrary.Components.Actions;
 using BehaviourLibrary.Components.Conditionals;
 using BehaviourLibrary.Components.Decorators;
@@ -41,6 +42,17 @@ namespace BehaviourLibraryTests
 			Assert.AreEqual(successInterruptable.Behave(), BehaviourReturnCode.Success);
 			Assert.AreEqual(failureInterruptable.Behave(), BehaviourReturnCode.Failure);
 			Assert.AreEqual(runningInterruptable.Behave(), BehaviourReturnCode.Running);
+		}
+
+		[Test]
+		public void When_interrupt_throws_then_doesnt_interrupt()
+		{
+			const BehaviourReturnCode actual = BehaviourReturnCode.Success;
+			var action = new BehaviourAction(() => actual);
+
+			var condition = new Conditional(() => { throw new Exception(); });
+			var returnCode = new Interruptible(action, condition, BehaviourReturnCode.Success).Behave();
+			Assert.AreEqual(actual, returnCode);
 		}
 	}
 }
