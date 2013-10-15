@@ -15,12 +15,13 @@ namespace BehaviourLibrary.Components.Composites
         /// -Returns Failure if all behavior components returned Failure
         /// </summary>
         /// <param name="behaviours">one to many behavior components</param>
-        public Selector(params BehaviourComponent[] behaviours)
+		public Selector(string name, params BehaviourComponent[] behaviours)
         {
-            _behaviours = behaviours;
+	        Name = name;
+	        _behaviours = behaviours;
         }
 
-        /// <summary>
+	    /// <summary>
         /// performs the given behavior
         /// </summary>
         /// <returns>the behaviors return code</returns>

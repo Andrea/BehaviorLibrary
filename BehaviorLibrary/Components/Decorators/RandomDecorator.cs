@@ -14,8 +14,9 @@ namespace BehaviourLibrary.Components.Decorators
 		/// <param name="probability">probability of execution</param>
 		/// <param name="randomFunction">function that determines probability to execute</param>
 		/// <param name="behaviour">behavior to execute</param>
-		public RandomDecorator(float probability, Func<float> randomFunction, BehaviourComponent behaviour)
+		public RandomDecorator(string name, float probability, Func<float> randomFunction, BehaviourComponent behaviour)
 		{
+			Name = name;
 			_probability = probability;
 			_rRandomFunction = randomFunction;
 			_behaviourComponent = behaviour;

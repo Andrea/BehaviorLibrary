@@ -15,8 +15,9 @@ namespace BehaviourLibrary.Components.Decorators
 		/// </summary>
 		/// <param name="maxCount">max number to count to</param>
 		/// <param name="behaviour">behavior to run</param>
-		public Counter(int maxCount, BehaviourComponent behaviour)
+		public Counter(string name, int maxCount, BehaviourComponent behaviour)
 		{
+			Name = name;
 			_maxCount = maxCount;
 			_behaviour = behaviour;
 		}

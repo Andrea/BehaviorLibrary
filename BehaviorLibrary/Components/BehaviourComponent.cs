@@ -4,9 +4,22 @@ namespace BehaviourLibrary.Components
 {
 	public abstract class BehaviourComponent
 	{
-		protected BehaviourReturnCode ReturnCode;
+		private BehaviourReturnCode _returnCode;
+
+		public string Name { get; set; }
+
+		public BehaviourReturnCode ReturnCode
+		{
+			get { return _returnCode; }
+			set
+			{
+				_returnCode = value;
+				UpdatedThisFrame = true;
+			}
+		}
+
+		public bool UpdatedThisFrame { get; set; }
 
 		public abstract BehaviourReturnCode Behave();
-
 	}
 }

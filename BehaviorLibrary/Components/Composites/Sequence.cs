@@ -13,8 +13,9 @@ namespace BehaviourLibrary.Components.Composites
 		/// -Does not Return Running
 		/// </summary>
 		/// <param name="behaviours"></param>
-		public Sequence(params BehaviourComponent[] behaviours)
+		public Sequence(string name, params BehaviourComponent[] behaviours)
 		{
+			Name = name;
 			_behaviours = behaviours;
 		}
 

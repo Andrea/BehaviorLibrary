@@ -16,8 +16,9 @@ namespace BehaviourLibrary.Components.Composites
 		///     -Returns Running if selected behavior returns Running
 		/// </summary>
 		/// <param name="behaviours">one to many behavior components</param>
-		public RandomSelector(params BehaviourComponent[] behaviours)
+		public RandomSelector(string name, params BehaviourComponent[] behaviours)
 		{
+			Name = name;
 			_behaviourComponents = behaviours;
 		}
 

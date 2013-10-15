@@ -33,7 +33,7 @@ namespace BehaviourLibrary
 			
 			try
 			{
-				switch (_rootSelector.Behave())
+				switch (RootSelector.Behave())
 				{
 					case BehaviourReturnCode.Failure:
 						ReturnCode = BehaviourReturnCode.Failure;
@@ -63,6 +63,11 @@ namespace BehaviourLibrary
 		public static StringBuilder NodeInfo = new StringBuilder();
 
 		public string NodeInfos { get { return NodeInfo.ToString(); }}
+
+		public RootSelector RootSelector
+		{
+			get { return _rootSelector; }
+		}
 
 		public void ClearNodeInfos()
 		{

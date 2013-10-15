@@ -12,8 +12,9 @@ namespace BehaviourLibrary.Components.Conditionals
 		///     -Returns Failure if false
 		/// </summary>
 		/// <param name="test">the value to be tested</param>
-		public Conditional(Func<Boolean> test)
+		public Conditional(string name, Func<Boolean> test)
 		{
+			Name = name;
 			_conditional = test;
 		}
 

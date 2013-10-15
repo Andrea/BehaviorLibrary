@@ -21,8 +21,9 @@ namespace BehaviourLibrary.Components.Decorators
 		/// <param name="behaviour"></param>
 		/// <param name="interruptCondition"></param>
 		/// <param name="onInterruptReturn"></param>
-		public Interruptible(BehaviourComponent behaviour, Conditional interruptCondition, BehaviourReturnCode onInterruptReturn)
+		public Interruptible(string name, BehaviourComponent behaviour, Conditional interruptCondition, BehaviourReturnCode onInterruptReturn)
 		{
+			Name = name;
 			_behaviourComponent = behaviour;
 			_interruptCondition = interruptCondition;
 			_onInterruptReturn = onInterruptReturn;

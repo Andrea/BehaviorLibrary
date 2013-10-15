@@ -16,8 +16,9 @@ namespace BehaviourLibrary.Components.Decorators
 		/// <param name="elapsedTimeFunction">function that returns elapsed time</param>
 		/// <param name="timeToWait">maximum time to wait before executing behavior</param>
 		/// <param name="behaviour">behavior to run</param>
-		public Timer(Func<int> elapsedTimeFunction, int timeToWait, BehaviourComponent behaviour)
+		public Timer(string name, Func<int> elapsedTimeFunction, int timeToWait, BehaviourComponent behaviour)
 		{
+			Name = name;
 			_elapsedTimeFunction = elapsedTimeFunction;
 			_behaviourComponent = behaviour;
 			_waitTime = timeToWait;

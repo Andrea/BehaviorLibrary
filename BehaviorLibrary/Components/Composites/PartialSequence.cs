@@ -16,9 +16,10 @@ namespace BehaviourLibrary.Components.Composites
         /// -Returns Failure if a behavior components returns Failure or an error is encountered
         /// </summary>
         /// <param name="behaviours">one to many behavior components</param>
-        public PartialSequence(params BehaviourComponent[] behaviours)
+		public PartialSequence(string name, params BehaviourComponent[] behaviours)
         {
-            _behaviours = behaviours;
+	        Name = name;
+	        _behaviours = behaviours;
             _seqLength = (short) _behaviours.Length;
         }
 

@@ -16,8 +16,9 @@ namespace BehaviourLibrary.Components.Composites
 		/// -Returns Failure if all behavior components returned Failure
 		/// </summary>
 		/// <param name="behaviours">one to many behavior components</param>
-		public ExclusiveSelector(params BehaviourComponent[] behaviours)
+		public ExclusiveSelector(string name, params BehaviourComponent[] behaviours)
 		{
+			Name = name;
 			_behaviours = behaviours;
 		}
 
