@@ -13,8 +13,21 @@ namespace BehaviourLibrary.Components.Decorators
 		///     -Returns Running on Running
 		/// </summary>
 		/// <param name="behaviour"></param>
-		public Inverter(BehaviourComponent behaviour)
+		public Inverter(BehaviourComponent behaviour) : this("", behaviour)
 		{
+		}
+
+		/// <summary>
+		///     inverts the given behavior
+		///     -Returns Success on Failure or Error
+		///     -Returns Failure on Success
+		///     -Returns Running on Running
+		/// </summary>
+		/// <param name="name">the name of the inverter</param>
+		/// <param name="behaviour"></param>
+		public Inverter(string name, BehaviourComponent behaviour)
+		{
+			Name = name;
 			_behaviourComponent = behaviour;
 		}
 

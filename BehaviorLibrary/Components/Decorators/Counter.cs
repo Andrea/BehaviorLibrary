@@ -15,8 +15,21 @@ namespace BehaviourLibrary.Components.Decorators
 		/// </summary>
 		/// <param name="maxCount">max number to count to</param>
 		/// <param name="behaviour">behavior to run</param>
-		public Counter(int maxCount, BehaviourComponent behaviour)
+		public Counter(int maxCount, BehaviourComponent behaviour) : this("", maxCount, behaviour)
 		{
+		}
+
+		/// <summary>
+		///     executes the behavior based on a counter
+		///     -each time Counter is called the counter increments by 1
+		///     -Counter executes the behavior when it reaches the supplied maxCount
+		/// </summary>
+		/// <param name="name">the name of the counter</param>
+		/// <param name="maxCount">max number to count to</param>
+		/// <param name="behaviour">behavior to run</param>
+		public Counter(string name, int maxCount, BehaviourComponent behaviour)
+		{
+			Name = name;
 			_maxCount = maxCount;
 			_behaviour = behaviour;
 		}

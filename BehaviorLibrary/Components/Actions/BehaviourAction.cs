@@ -10,8 +10,13 @@ namespace BehaviourLibrary.Components.Actions
 		{
 		}
 
-		public BehaviourAction(Func<BehaviourReturnCode> action)
+		public BehaviourAction(Func<BehaviourReturnCode> action) : this("", action)
 		{
+		}
+
+		public BehaviourAction(string name, Func<BehaviourReturnCode> action)
+		{
+			Name = name;
 			_action = action;
 		}
 

@@ -4,13 +4,6 @@ using BehaviourLibrary.Components.Composites;
 
 namespace BehaviourLibrary
 {
-	public enum BehaviourReturnCode
-	{
-		Failure,
-		Success,
-		Running
-	}
-
 	public class Behaviour
 	{
 		private readonly RootSelector _rootSelector;
@@ -33,7 +26,7 @@ namespace BehaviourLibrary
 			
 			try
 			{
-				switch (_rootSelector.Behave())
+				switch (RootSelector.Behave())
 				{
 					case BehaviourReturnCode.Failure:
 						ReturnCode = BehaviourReturnCode.Failure;
@@ -63,6 +56,11 @@ namespace BehaviourLibrary
 		public static StringBuilder NodeInfo = new StringBuilder();
 
 		public string NodeInfos { get { return NodeInfo.ToString(); }}
+
+		public RootSelector RootSelector
+		{
+			get { return _rootSelector; }
+		}
 
 		public void ClearNodeInfos()
 		{

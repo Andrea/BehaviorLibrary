@@ -13,8 +13,21 @@ namespace BehaviourLibrary.Components.Composites
 		/// -Returns Running if one behavior returns Running
 		/// </summary>
 		/// <param name="behaviours"></param>
-		public ExclusiveSequence(params BehaviourComponent[] behaviours)
+		public ExclusiveSequence(params BehaviourComponent[] behaviours) : this("", behaviours)
 		{
+		}
+
+		/// <summary>
+		/// Attempts to run the behaviors all in one cycle
+		/// -Returns Success when all are successful
+		/// -Returns Failure if one behavior fails or an error occurs
+		/// -Returns Running if one behavior returns Running
+		/// </summary>
+		/// <param name="name">the name of the sequence</param>
+		/// <param name="behaviours"></param>
+		public ExclusiveSequence(string name, params BehaviourComponent[] behaviours)
+		{
+			Name = name;
 			_behaviours = behaviours;
 		}
 

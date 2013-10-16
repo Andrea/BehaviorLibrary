@@ -13,11 +13,14 @@ namespace BehaviourLibrary.Components.Composites
         /// </summary>
         /// <param name="index">an index representing which of the behavior branches to perform</param>
         /// <param name="behaviours">the behavior branches to be selected from</param>
-        public RootSelector(Func<int> index, params BehaviourComponent[] behaviours)
+		public RootSelector(Func<int> index, params BehaviourComponent[] behaviours) : this("", index, behaviours)
         {
-            _index = index;
-            _behaviours = behaviours;
         }
+
+	    public RootSelector(string name, Func<int> index, params BehaviourComponent[] behaviours) : base(name, behaviours)
+	    {
+			_index = index;
+	    }
 
         /// <summary>
         /// performs the given behavior

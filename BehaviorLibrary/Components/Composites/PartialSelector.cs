@@ -8,17 +8,31 @@ namespace BehaviourLibrary.Components.Composites
         private short _selections;
         private short _selLength;
 
-        /// <summary>
-		/// Selects among the given behavior components (one evaluation per Behave call)
-        /// Performs an OR-Like behavior and will "fail-over" to each successive component until Success is reached or Failure is certain
-        /// -Returns Success if a behavior component returns Success
-        /// -Returns Running if a behavior component returns Failure or Running
-        /// -Returns Failure if all behavior components returned Failure or an error has occured
-        /// </summary>
-        /// <param name="behaviours">one to many behavior components</param>
-        public PartialSelector(params BehaviourComponent[] behaviours)
+	    /// <summary>
+	    /// Selects among the given behavior components (one evaluation per Behave call)
+	    /// Performs an OR-Like behavior and will "fail-over" to each successive component until Success is reached or Failure is certain
+	    /// -Returns Success if a behavior component returns Success
+	    /// -Returns Running if a behavior component returns Failure or Running
+	    /// -Returns Failure if all behavior components returned Failure or an error has occured
+	    /// </summary>
+	    /// <param name="behaviours">one to many behavior components</param>
+	    public PartialSelector(params BehaviourComponent[] behaviours) : this("", behaviours)
+		{
+		}
+
+	    /// <summary>
+	    /// Selects among the given behavior components (one evaluation per Behave call)
+	    /// Performs an OR-Like behavior and will "fail-over" to each successive component until Success is reached or Failure is certain
+	    /// -Returns Success if a behavior component returns Success
+	    /// -Returns Running if a behavior component returns Failure or Running
+	    /// -Returns Failure if all behavior components returned Failure or an error has occured
+	    /// </summary>
+	    /// <param name="name">the name of the selector</param>
+	    /// <param name="behaviours">one to many behavior components</param>
+	    public PartialSelector(string name, params BehaviourComponent[] behaviours)
         {
-            _behaviours = behaviours;
+	        Name = name;
+	        _behaviours = behaviours;
             _selLength = (short)_behaviours.Length;
         }
 
