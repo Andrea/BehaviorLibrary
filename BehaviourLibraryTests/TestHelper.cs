@@ -3,7 +3,7 @@ using BehaviourLibrary.Components.Actions;
 
 namespace BehaviourLibraryTests
 {
-	internal  class TestsHelper
+	internal  class TestHelper
 	{
 		private int _i;
 
