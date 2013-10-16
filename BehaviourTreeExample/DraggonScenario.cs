@@ -27,7 +27,7 @@ namespace BehaviourTreeExample
 	public class DraggonScenario
 	{
 		private Behaviour _behaviour;
-		private int _i = 0;
+		private int _i;
 		private int _nodeState;
 
 		public void Setup()
