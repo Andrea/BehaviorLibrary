@@ -46,7 +46,7 @@ namespace BehaviourLibraryTests
 		{
 			var sequence = new StatefulSelector(
 				new BehaviourAction(CalledAndFailed),
-				new BehaviourAction(new TestsHelper().RunningTwiceThenSuccess), 
+				new BehaviourAction(new TestHelper().RunningTwiceThenSuccess), 
 				new BehaviourAction(() => BehaviourReturnCode.Success)
 				);
 			Assert.AreEqual(BehaviourReturnCode.Running, sequence.Behave());
