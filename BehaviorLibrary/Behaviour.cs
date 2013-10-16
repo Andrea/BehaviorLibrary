@@ -4,13 +4,6 @@ using BehaviourLibrary.Components.Composites;
 
 namespace BehaviourLibrary
 {
-	public enum BehaviourReturnCode
-	{
-		Failure,
-		Success,
-		Running
-	}
-
 	public class Behaviour
 	{
 		private readonly RootSelector _rootSelector;

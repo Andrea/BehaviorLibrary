@@ -37,6 +37,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Behaviour.cs" />
+    <Compile Include="BehaviourReturnCode.cs" />
     <Compile Include="Components\Actions\BehaviourAction.cs" />
     <Compile Include="Components\BehaviourComponent.cs" />
     <Compile Include="Components\Composites\ExclusiveSelector.cs" />

@@ -7,15 +7,28 @@ namespace BehaviourLibrary.Components.Composites
 	    private BehaviourComponent[] _behaviours;
 
 
-        /// <summary>
-        /// Selects among the given behavior components
-        /// Performs an OR-Like behavior and will "fail-over" to each successive component until Success is reached or Failure is certain
-        /// -Returns Success if a behavior component returns Success
-        /// -Returns Running if a behavior component returns Running
-        /// -Returns Failure if all behavior components returned Failure
-        /// </summary>
-        /// <param name="behaviours">one to many behavior components</param>
-		public Selector(string name, params BehaviourComponent[] behaviours)
+	    /// <summary>
+	    /// Selects among the given behavior components
+	    /// Performs an OR-Like behavior and will "fail-over" to each successive component until Success is reached or Failure is certain
+	    /// -Returns Success if a behavior component returns Success
+	    /// -Returns Running if a behavior component returns Running
+	    /// -Returns Failure if all behavior components returned Failure
+	    /// </summary>
+	    /// <param name="behaviours">one to many behavior components</param>
+	    public Selector(params BehaviourComponent[] behaviours) : this("", behaviours)
+		{
+		}
+
+	    /// <summary>
+	    /// Selects among the given behavior components
+	    /// Performs an OR-Like behavior and will "fail-over" to each successive component until Success is reached or Failure is certain
+	    /// -Returns Success if a behavior component returns Success
+	    /// -Returns Running if a behavior component returns Running
+	    /// -Returns Failure if all behavior components returned Failure
+	    /// </summary>
+	    /// <param name="name">the name of the selector</param>
+	    /// <param name="behaviours">one to many behavior components</param>
+	    public Selector(string name, params BehaviourComponent[] behaviours)
         {
 	        Name = name;
 	        _behaviours = behaviours;

@@ -11,11 +11,22 @@ namespace BehaviourLibrary.Components.Conditionals
 		///     -Returns Success if true
 		///     -Returns Failure if false
 		/// </summary>
+		/// <param name="name">the name of the condition</param>
 		/// <param name="test">the value to be tested</param>
 		public Conditional(string name, Func<Boolean> test)
 		{
 			Name = name;
 			_conditional = test;
+		}
+
+		/// <summary>
+		///     Returns a return code equivalent to the test
+		///     -Returns Success if true
+		///     -Returns Failure if false
+		/// </summary>
+		/// <param name="test">the value to be tested</param>
+		public Conditional(Func<Boolean> test) : this("", test)
+		{
 		}
 
 		/// <summary>

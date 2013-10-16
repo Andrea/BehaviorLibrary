@@ -16,6 +16,19 @@ namespace BehaviourLibrary.Components.Composites
 		/// -Returns Failure if all behavior components returned Failure
 		/// </summary>
 		/// <param name="behaviours">one to many behavior components</param>
+		public StatefulSelector(params BehaviourComponent[] behaviours) : this("", behaviours)
+		{
+		}
+
+		/// <summary>
+		/// Selects among the given behavior components (stateful on running) 
+		/// Performs an OR-Like behavior and will "fail-over" to each successive component until Success is reached or Failure is certain
+		/// -Returns Success if a behavior component returns Success
+		/// -Returns Running if a behavior component returns Running
+		/// -Returns Failure if all behavior components returned Failure
+		/// </summary>
+		/// <param name="name">the name of the selector</param>
+		/// <param name="behaviours">one to many behavior components</param>
 		public StatefulSelector(string name, params BehaviourComponent[] behaviours)
 		{
 			Name = name;

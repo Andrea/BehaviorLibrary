@@ -7,16 +7,29 @@ namespace BehaviourLibrary.Components.Composites
 	    private BehaviourComponent[] _behaviours;
         private short _sequence;
         private short _seqLength;
-        
-        /// <summary>
-        /// Performs the given behavior components sequentially (one evaluation per Behave call)
-        /// Performs an AND-Like behavior and will perform each successive component
-        /// -Returns Success if all behavior components return Success
-        /// -Returns Running if an individual behavior component returns Success or Running
-        /// -Returns Failure if a behavior components returns Failure or an error is encountered
-        /// </summary>
-        /// <param name="behaviours">one to many behavior components</param>
-		public PartialSequence(string name, params BehaviourComponent[] behaviours)
+
+		/// <summary>
+		/// Performs the given behavior components sequentially (one evaluation per Behave call)
+		/// Performs an AND-Like behavior and will perform each successive component
+		/// -Returns Success if all behavior components return Success
+		/// -Returns Running if an individual behavior component returns Success or Running
+		/// -Returns Failure if a behavior components returns Failure or an error is encountered
+		/// </summary>
+		/// <param name="behaviours">one to many behavior components</param>
+		public PartialSequence(params BehaviourComponent[] behaviours) : this("", behaviours)
+		{
+		}
+
+	    /// <summary>
+	    /// Performs the given behavior components sequentially (one evaluation per Behave call)
+	    /// Performs an AND-Like behavior and will perform each successive component
+	    /// -Returns Success if all behavior components return Success
+	    /// -Returns Running if an individual behavior component returns Success or Running
+	    /// -Returns Failure if a behavior components returns Failure or an error is encountered
+	    /// </summary>
+		/// <param name="name">the name of the sequence</param>
+	    /// <param name="behaviours">one to many behavior components</param>
+	    public PartialSequence(string name, params BehaviourComponent[] behaviours)
         {
 	        Name = name;
 	        _behaviours = behaviours;

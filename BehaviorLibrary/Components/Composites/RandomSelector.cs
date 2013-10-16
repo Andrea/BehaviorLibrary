@@ -16,6 +16,18 @@ namespace BehaviourLibrary.Components.Composites
 		///     -Returns Running if selected behavior returns Running
 		/// </summary>
 		/// <param name="behaviours">one to many behavior components</param>
+		public RandomSelector(params BehaviourComponent[] behaviours) : this("", behaviours)
+		{
+		}
+
+		/// <summary>
+		///     Randomly selects and performs one of the passed behaviors
+		///     -Returns Success if selected behavior returns Success
+		///     -Returns Failure if selected behavior returns Failure
+		///     -Returns Running if selected behavior returns Running
+		/// </summary>
+		/// <param name="name">the name of the selector</param>
+		/// <param name="behaviours">one to many behavior components</param>
 		public RandomSelector(string name, params BehaviourComponent[] behaviours)
 		{
 			Name = name;
