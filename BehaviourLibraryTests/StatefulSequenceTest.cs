@@ -1,5 +1,4 @@
-﻿using System;
-using BehaviourLibrary;
+﻿using BehaviourLibrary;
 using BehaviourLibrary.Components.Actions;
 using BehaviourLibrary.Components.Composites;
 using BehaviourLibrary.Components.Conditionals;
@@ -17,7 +16,6 @@ namespace BehaviourLibraryTests
 		{
 			_calledAndSuccessTimes = 0;
 		}
-
 
 		[Test]
 		public void When_behave_running_takes_up_from_where_it_left_without_re_evaluating_prev_conditions()
@@ -69,7 +67,6 @@ namespace BehaviourLibraryTests
 			Assert.AreEqual(BehaviourReturnCode.Success, sequence.Behave());
 			Assert.AreEqual(2, _calledAndSuccessTimes);
 		}
-
 
 		private BehaviourReturnCode CalledAndRunning()
 		{

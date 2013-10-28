@@ -43,6 +43,7 @@
     <Compile Include="ExclusiveSelectorTests.cs" />
     <Compile Include="ExclusiveSequenceTest.cs" />
     <Compile Include="InterruptableTests.cs" />
+    <Compile Include="RandomSelectorTest.cs" />
     <Compile Include="StatefulSelectorTests.cs" />
     <Compile Include="TestsHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

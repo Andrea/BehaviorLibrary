@@ -8,6 +8,7 @@ namespace BehaviourLibrary.Components.Composites
 
 		//use current milliseconds to set random seed
 		private Random r_Random = new Random(DateTime.Now.Millisecond);
+		private int _index = -1;
 
 		/// <summary>
 		///     Randomly selects and performs one of the passed behaviors
@@ -16,7 +17,8 @@ namespace BehaviourLibrary.Components.Composites
 		///     -Returns Running if selected behavior returns Running
 		/// </summary>
 		/// <param name="behaviours">one to many behavior components</param>
-		public RandomSelector(params BehaviourComponent[] behaviours) : this("", behaviours)
+		public RandomSelector(params BehaviourComponent[] behaviours)
+			: this("", behaviours)
 		{
 		}
 
@@ -40,21 +42,24 @@ namespace BehaviourLibrary.Components.Composites
 		/// <returns>the behaviors return code</returns>
 		public override BehaviourReturnCode Behave()
 		{
-			r_Random = new Random(DateTime.Now.Millisecond);
-
 			try
 			{
-				switch (_behaviourComponents[r_Random.Next(0, _behaviourComponents.Length - 1)].Behave())
+
+				if (_index == -1)
+					_index = r_Random.Next(0, _behaviourComponents.Length - 1);
+				switch (_behaviourComponents[_index].Behave())
 				{
 					case BehaviourReturnCode.Failure:
 						ReturnCode = BehaviourReturnCode.Failure;
+						_index = -1;
 						return ReturnCode;
 					case BehaviourReturnCode.Success:
 						ReturnCode = BehaviourReturnCode.Success;
+						_index = -1;
 						return ReturnCode;
 					case BehaviourReturnCode.Running:
 						ReturnCode = BehaviourReturnCode.Running;
-						return ReturnCode;
+						return BehaviourReturnCode.Running;
 					default:
 						ReturnCode = BehaviourReturnCode.Failure;
 						return ReturnCode;
@@ -65,9 +70,11 @@ namespace BehaviourLibrary.Components.Composites
 #if DEBUG
 				Console.Error.WriteLine(e.ToString());
 #endif
+				_index = -1;
 				ReturnCode = BehaviourReturnCode.Failure;
 				return ReturnCode;
 			}
+
 		}
 	}
 }
