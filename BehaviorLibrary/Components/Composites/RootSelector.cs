@@ -20,6 +20,7 @@ namespace BehaviourLibrary.Components.Composites
 	    public RootSelector(string name, Func<int> index, params BehaviourComponent[] behaviours) : base(name, behaviours)
 	    {
 			_index = index;
+		    _behaviours = behaviours;
 	    }
 
         /// <summary>

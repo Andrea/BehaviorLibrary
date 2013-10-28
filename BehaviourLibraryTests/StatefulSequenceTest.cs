@@ -26,8 +26,8 @@ namespace BehaviourLibraryTests
 											called++;
 											return true;
 										}),
-									TestsHelper.CreateRunningAction(),
-									TestsHelper.CreateSuccessAction()
+									TestHelper.CreateRunningAction(),
+									TestHelper.CreateSuccessAction()
 									);
 
 			exclusive.Behave();
@@ -60,7 +60,7 @@ namespace BehaviourLibraryTests
 		[Test]
 		public void When_running_Then_complete_with_many_behave_calls()
 		{
-			var sequence = new StatefulSequence(new BehaviourAction(CalledAndSuccess), new BehaviourAction(new TestsHelper().RunningTwiceThenSuccess), new BehaviourAction(CalledAndSuccess));
+			var sequence = new StatefulSequence(new BehaviourAction(CalledAndSuccess), new BehaviourAction(new TestHelper().RunningTwiceThenSuccess), new BehaviourAction(CalledAndSuccess));
 			Assert.AreEqual(BehaviourReturnCode.Running, sequence.Behave());
 			Assert.AreEqual(BehaviourReturnCode.Running, sequence.Behave());
 			Assert.AreEqual(BehaviourReturnCode.Running, sequence.Behave());

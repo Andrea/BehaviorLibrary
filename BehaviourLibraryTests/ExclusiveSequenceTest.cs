@@ -26,9 +26,9 @@ namespace BehaviourLibraryTests
 										called++;
 										return true;
 									}),
-									TestsHelper.CreateRunningAction(),
-									TestsHelper.CreateRunningAction(),
-									TestsHelper.CreateSuccessAction()
+									TestHelper.CreateRunningAction(),
+									TestHelper.CreateRunningAction(),
+									TestHelper.CreateSuccessAction()
 									);
 			exclusive.Behave();
 			exclusive.Behave();
@@ -56,7 +56,7 @@ namespace BehaviourLibraryTests
 		{
 			var sequence = new ExclusiveSequence(
 				new BehaviourAction(CalledAndSuccess), 
-				new BehaviourAction(new TestsHelper().RunningTwiceThenSuccess)
+				new BehaviourAction(new TestHelper().RunningTwiceThenSuccess)
 				);
 
 			Assert.AreEqual(BehaviourReturnCode.Running, sequence.Behave());
