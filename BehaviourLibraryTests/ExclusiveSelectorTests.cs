@@ -42,18 +42,18 @@ namespace BehaviourLibraryTests
 		[Test]
 		public void When_failed_then_Running_Then_keeps_going_until_sucess()
 		{
-			var returnCode = new StatefulSelector(
+			var returnCode = new ExclusiveSelector(
 							TestHelper.CreateFailiedAction(),
 							TestHelper.CreateRunningAction(),
 							TestHelper.CreateSuccessAction()).Behave();
 			
-			Assert.AreEqual(BehaviourReturnCode.Running, returnCode);
+			Assert.AreEqual(BehaviourReturnCode.Success, returnCode);
 		}
 
 		[Test]
 		public void When_running_and_completed_sequence_then_Running()
 		{
-			var returnCode = new StatefulSelector(TestHelper.CreateRunningAction(), TestHelper.CreateRunningAction()).Behave();
+			var returnCode = new ExclusiveSelector(TestHelper.CreateRunningAction(), TestHelper.CreateRunningAction()).Behave();
 
 			Assert.AreEqual(BehaviourReturnCode.Running, returnCode);
 		}
