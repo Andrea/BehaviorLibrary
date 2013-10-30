@@ -12,7 +12,7 @@ namespace BehaviourLibrary.Components.Composites
 		/// Selects among the given behavior components (exclusive on running) 
 		/// Performs an OR-Like behavior and will "fail-over" to each successive component until Success is reached or Failure is certain
 		/// -Returns Success if a behavior component returns Success
-		/// -Returns Running if a behavior component returns Running
+		/// -Returns Running if all behavior components return Running
 		/// -Returns Failure if all behavior components returned Failure
 		/// </summary>
 		/// <param name="behaviours">one to many behavior components</param>
@@ -41,6 +41,7 @@ namespace BehaviourLibrary.Components.Composites
 		/// <returns>the behaviors return code</returns>
 		public override BehaviourReturnCode Behave()
 		{
+			var returnCode = BehaviourReturnCode.Failure;
 			for (; _lastBehavior < _behaviours.Length; _lastBehavior++)
 			{
 				try
@@ -54,6 +55,7 @@ namespace BehaviourLibrary.Components.Composites
 							ReturnCode = BehaviourReturnCode.Success;
 							return ReturnCode;
 						case BehaviourReturnCode.Running:
+							returnCode = BehaviourReturnCode.Running;
 							continue;
 						default:
 							continue;
@@ -67,7 +69,7 @@ namespace BehaviourLibrary.Components.Composites
 				}
 			}
 			_lastBehavior = 0;
-			ReturnCode = BehaviourReturnCode.Failure;
+			ReturnCode = returnCode;
 			return ReturnCode;
 		}
 	}
